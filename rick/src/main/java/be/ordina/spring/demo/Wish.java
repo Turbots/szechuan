@@ -1,6 +1,6 @@
 package be.ordina.spring.demo;
 
-public class Order {
+public class Wish {
 
     private String item;
 

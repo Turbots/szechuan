@@ -1,0 +1,14 @@
+{
+  "properties": [
+    {
+      "name": "mcdonalds.order.poolSize",
+      "type": "java.lang.String",
+      "description": "Description for mcdonalds.order.poolSize."
+    },
+    {
+      "name": "mcdonalds.order.poolNumber",
+      "type": "java.lang.String",
+      "description": "Description for mcdonalds.order.poolNumber."
+    }
+  ]
+}

@@ -1,13 +1,13 @@
 package be.ordina.spring.demo;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
-public class Wish {
+@Builder
+public class Order {
 
 	private String item;
 }

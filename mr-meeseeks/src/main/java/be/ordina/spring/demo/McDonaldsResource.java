@@ -1,20 +1,26 @@
 package be.ordina.spring.demo;
 
+import be.ordina.spring.feign.FeignConfiguration;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.netflix.feign.FeignClient;
-import org.springframework.core.annotation.Order;
 import org.springframework.http.MediaType;
-import org.springframework.http.RequestEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PostMapping;
-import reactor.core.publisher.Mono;
 
-@FeignClient(fallback = McDonaldsResource.McDonaldsFallback.class)
+@FeignClient(name = "mcdonalds", fallback = McDonaldsResource.McDonaldsFallback.class, configuration = FeignConfiguration.class)
 public interface McDonaldsResource {
 
-    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    RequestEntity<Mono<Order>> orderSzechuanSauce(Order order);
+	@PostMapping(path = "/order", produces = MediaType.APPLICATION_JSON_VALUE)
+	ResponseEntity<OrderResult> orderSzechuanSauce(Order order);
 
-    @Component
-    class McDonaldsFallback {
-    }
+	@Slf4j
+	@Component class McDonaldsFallback implements McDonaldsResource {
+
+		@Override public ResponseEntity<OrderResult> orderSzechuanSauce(Order order) {
+			log.warn("I CAN'T TAKE IT ANYMORE! I JUST WANNA DIE!");
+
+			return ResponseEntity.notFound().build();
+		}
+	}
 }

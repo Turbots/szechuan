@@ -9,13 +9,13 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class FeignConfiguration {
 
-	@Bean
-	Logger.Level feignLogger() {
-		return Logger.Level.BASIC;
-	}
+    @Bean
+    Logger.Level feignLogger() {
+        return Logger.Level.BASIC;
+    }
 
-	@Bean
-	Feign.Builder feignBuilder() {
-		return HystrixFeign.builder();
-	}
+    @Bean
+    Feign.Builder feignBuilder() {
+        return HystrixFeign.builder();
+    }
 }
