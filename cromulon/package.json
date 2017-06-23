@@ -1,0 +1,21 @@
+{
+  "name": "cromulon",
+  "version": "1.0.0",
+  "description": "Cromulon Wants You To Show You What You Got",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dieter Hubau",
+  "license": "ISC",
+  "dependencies": {
+    "@types/react": "^15.0.30",
+    "@types/react-dom": "^15.5.0",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
+  },
+  "devDependencies": {
+    "source-map-loader": "^0.2.1",
+    "ts-loader": "^2.2.0"
+  }
+}

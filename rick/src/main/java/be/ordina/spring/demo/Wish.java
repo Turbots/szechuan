@@ -2,13 +2,14 @@ package be.ordina.spring.demo;
 
 public class Wish {
 
-    private String item;
+	private final String item;
 
-    public String getItem() {
-        return item;
-    }
+	public Wish(String item) {
+		this.item = item;
+	}
 
-    public void setItem(String item) {
-        this.item = item;
-    }
+	public String getItem() {
+		return item;
+	}
+
 }

@@ -4,3 +4,15 @@ management:
   security:
     enabled: false
   context-path: /
+spring:
+  rabbitmq:
+    host: localhost
+    port: 32775
+    username: guest
+    password: guest
+  cloud:
+    stream:
+      bindings:
+        voice:
+          destination: voice
+          binder: rabbit
