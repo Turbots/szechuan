@@ -13,6 +13,5 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "mcdonalds.order")
 public class OrderChanceProperties {
 
-	private int poolSize;
-	private int poolNumber;
+	private int chance;
 }

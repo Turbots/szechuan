@@ -28,14 +28,13 @@ public class OrderController {
 
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<OrderResult> makeOrder(@RequestBody @Valid Order order) {
-		int chance = RAND.nextInt(orderChanceProperties.getPoolSize());
-		log.info("Received Order [{}] with generated number [{}]", order, chance);
+		int chance = RAND.nextInt(orderChanceProperties.getChance());
+		log.info("Received Order [{}] - Your ticket number [{}]", order, chance);
 		if (order.getItem().toLowerCase().contains("szechuan")) {
-			if (chance == orderChanceProperties.getPoolNumber()) {
+			if (chance == 1) {
 				log.info("Here is your Special 1988 Mulan Szechuan Dipping Sauce, sir!");
 				return ResponseEntity.ok(OrderResult.ORDERED);
 			} else {
-				log.info("We don't know what you're talking about!");
 				return ResponseEntity.ok(OrderResult.ITEM_DOES_NOT_EXIST);
 			}
 		} else {

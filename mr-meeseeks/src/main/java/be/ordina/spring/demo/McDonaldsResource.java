@@ -18,8 +18,6 @@ public interface McDonaldsResource {
 	@Component class McDonaldsFallback implements McDonaldsResource {
 
 		@Override public ResponseEntity<OrderResult> orderSzechuanSauce(Order order) {
-			log.warn("I CAN'T TAKE IT ANYMORE! I JUST WANNA DIE!");
-
 			return ResponseEntity.notFound().build();
 		}
 	}

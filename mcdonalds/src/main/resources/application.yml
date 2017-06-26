@@ -6,5 +6,4 @@ management:
   context-path: /
 mcdonalds:
   order:
-    poolSize: 10
-    poolNumber: 3
+    chance: ${CHANCE:100}

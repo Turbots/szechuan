@@ -1,10 +1,9 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { Well } from "./components/well";
+
+import {Hello} from "./components/Hello";
 
 ReactDOM.render(
-    <div>
-        <Well text="Well well well..."/>
-    </div>,
-    document.getElementById("body")
+    <Hello compiler="TypeScript" framework="React"/>,
+    document.getElementById("example")
 );

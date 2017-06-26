@@ -1,14 +1,9 @@
 {
   "properties": [
     {
-      "name": "mcdonalds.order.poolSize",
+      "name": "mcdonalds.order.chance",
       "type": "java.lang.String",
-      "description": "Description for mcdonalds.order.poolSize."
-    },
-    {
-      "name": "mcdonalds.order.poolNumber",
-      "type": "java.lang.String",
-      "description": "Description for mcdonalds.order.poolNumber."
+      "description": "The chance that the Szechuan dipping sauce is won."
     }
   ]
 }

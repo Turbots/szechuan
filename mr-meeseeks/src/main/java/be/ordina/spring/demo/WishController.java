@@ -34,7 +34,6 @@ public class WishController {
 				log.info("ALL DONE! NOW I CAN FINALLY DIE!!!", wish);
 				return ResponseEntity.ok(WishResult.GRANTED);
 			} else {
-				log.info("OH NO! MCDONALDS DOESN'T HAVE THAT ITEM! I'LL NEVER DIE!!! EXISTENCE IS PAIN!!!");
 				return ResponseEntity.ok(WishResult.NOT_GRANTED);
 			}
 		} else {

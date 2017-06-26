@@ -19,7 +19,6 @@ public interface MeeseeksResource {
 
 		@Override
 		public ResponseEntity<WishResult> makeWish(@RequestBody Wish wish) {
-			log.warn("Fallback! Let me out! Let me out! This is not a dance...");
 			return ResponseEntity.notFound().build();
 		}
 	}
