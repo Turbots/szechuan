@@ -4,9 +4,19 @@ management:
   security:
     enabled: false
   context-path: /
+eureka:
+  instance:
+    hostname: ${vcap.application.uris[0]}
+    secureVirtualHostName: ${spring.application.name}
+    statusPageUrl: https://${eureka.instance.hostname}/info
+    healthCheckUrl: https://${eureka.instance.hostname}/health
+    homePageUrl: https://${eureka.instance.hostname}/
+  client:
+    serviceUrl:
+      defaultZone: ${vcap.services.eureka.credentials.uri:http://127.0.0.1:8761}/eureka/
 spring:
   rabbitmq:
-    host: localhost
+    host: ${cloudamqp.credentials.http_api_uri:localhost}
     port: 32774
     username: guest
     password: guest

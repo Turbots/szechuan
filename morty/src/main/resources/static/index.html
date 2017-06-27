@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>CloudFoundry - Introduction &amp; Architecture</title>
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/ordina.css" id="theme">
+    <!--
+        Uncomment the PRINT PDF if you want to save the presentation to PDF.
+        <link rel="stylesheet" href="css/print/pdf.css" id="theme">
+    -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <!--Add support for earlier versions of Internet Explorer -->
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h3>Introduction to</h3>
+
+            <img src="img/cf-logo.png" class="transparent"/>
+
+            <div style="margin-top: 5em">
+                <h5>
+                    <p>by <span class="blue">Dieter Hubau</span></p>
+
+                    <p>Cloud and PaaS Competence Center</p>
+
+                    <p>© 2017 <span class="orange">JWorks</span></p>
+
+                    <img src="img/jworks-100x100.png" class="transparent" style="width: 100px"/>
+                </h5>
+            </div>
+        </section>
+        <section>
+            <h3>Why are we here</h3>
+
+            <p class="fragment">Introduce the <span class="orange">concept</span> of PaaS</span></p>
+
+            <p class="fragment">Explain <span class="blue">how developers can benefit from a PaaS</span></p>
+
+            <p class="fragment">Discover <span class="orange">Cloud Foundry</span></p>
+
+            <p class="fragment">Highlight the Cloud Foundry <span class="blue">Architecture</span></p>
+
+            <p class="fragment">Demo <span class="pivotal">Pivotal Cloud Foundry</span></p>
+        </section>
+        <section>
+            <h3>What is <span class="blue">Platform as a service</span></h3>
+
+            <img src="img/rick-morty-huh.png" class="transparent" width="400px"/>
+
+            <p class="fragment">A <span class="blue">cloud computing</span> service offering</p>
+
+            <p class="fragment">Allows you to <span class="orange">manage and run applications</span></p>
+
+            <p class="fragment"><span class="blue">Without worrying</span> about infrastructure</p>
+        </section>
+        <section>
+            <section>
+                <h3>Where does a PaaS live</h3>
+
+                <img src="img/rick-and-morty-fart.png" class="fragment transparent" width="200px"/>
+
+                <div>
+                    <img src="img/iaas.png" class="fragment transparent"/>
+                    <img src="img/paas.png" class="fragment transparent"/>
+                    <img src="img/saas.png" class="fragment transparent"/>
+                </div>
+            </section>
+            <section>
+                <h3>Infrastructure as a Service</h3>
+
+                <img src="img/iaas.png" class="transparent"/>
+
+                <p class="fragment">resources are distributed <span class="orange">as a service</span></p>
+
+                <p class="fragment">allows for <span class="blue">dynamic scaling</span></p>
+
+                <p class="fragment"><span class="orange">variable cost</span> pricing (like utilities)</p>
+
+                <p class="fragment">usually <span class="blue">multiple users</span> on single piece of hardware</p>
+            </section>
+            <section>
+                <h3>Windows Azure</h3>
+                <img src="img/azure.png" alt="Azure" class="transparent"/>
+            </section>
+            <section>
+                <h3>OpenStack</h3>
+                <img src="img/openstack.png" alt="OpenStack" class="transparent"/>
+            </section>
+            <section>
+                <h3>VMWare</h3>
+                <img src="img/vmware.png" alt="VMWare" class="transparent"/>
+            </section>
+            <section>
+                <h3>Google Compute Engine</h3>
+                <img src="img/gce.png" alt="Google Compute Engine" class="transparent"/>
+            </section>
+            <section>
+                <h3>Amazon Web Services</h3>
+                <img src="img/aws.png" alt="Amazon Web Services" class="transparent"/>
+            </section>
+            <section>
+                <h3>Platform as a service</h3>
+
+                <img src="img/paas.png" class="transparent"/>
+
+                <p class="fragment"><span class="blue">this is why you are here...</span></p>
+            </section>
+            <section>
+                <h3>Software As A Service</h3>
+                <img src="img/saas.png" class="transparent"/>
+
+                <p class="fragment">network access to, and mgmt of <span
+                        class="orange">commercially available software</span></p>
+
+                <p class="fragment">managed from central locations and <span
+                        class="blue">available remotely via the web</span></p>
+
+                <p class="fragment">single instance, <span class="orange">multi-tenant </span>architecture</p>
+
+                <p class="fragment">centralized feature updating</p>
+            </section>
+            <section>
+                <h3>Hotmail</h3>
+                <img src="img/hotmail.png" alt="Hotmail" class="transparent"/>
+            </section>
+            <section>
+                <h3>GMail</h3>
+                <img src="img/gmail.png" alt="GMail" class="transparent"/>
+            </section>
+            <section>
+                <h3>Salesforce</h3>
+                <img src="img/salesforce.png" alt="Salesforce" class="transparent"/>
+            </section>
+            <section>
+                <h3>Office 365</h3>
+                <img src="img/office-365.png" alt="Office 365" class="transparent"/>
+            </section>
+            <section>
+                <h3>Slack</h3>
+                <img src="img/slack.png" alt="Slack" class="transparent"/>
+            </section>
+            <section>
+                <h3>Github</h3>
+                <img src="img/github.png" alt="Github" class="transparent"/>
+            </section>
+            <section>
+                <h3>Compared to IaaS and SaaS</h3>
+                <img src="img/saas_paas_iaas.png" class="transparent"/>
+
+                <table>
+                    <tr class="fragment">
+                        <th>vs</th>
+                        <th colspan="2">PAAS</th>
+                    </tr>
+                    <tr class="fragment">
+                        <td>IAAS</td>
+                        <td class="blue fragment">More Abstraction</td>
+                        <td class="orange fragment">Less Control</td>
+                    </tr>
+                    <tr class="fragment">
+                        <td>SAAS</td>
+                        <td class="orange fragment">Less Abstraction</td>
+                        <td class="blue fragment">More Control</td>
+                    </tr>
+                </table>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h3>Which services should a paas offer</h3>
+
+                <div class="fragment">
+                    <p>What are the <span class="orange">criteria</span> for evaluating Paas providers?</p>
+
+                    <img src="img/criteria.png" class="transparent"/>
+                </div>
+
+                <p class="fragment">
+                    <img src="img/acquia.png" class="transparent"/>
+                </p>
+
+                <h3 class="fragment">"The <span class="orange">10 Layers Of PaaS"</span></h3>
+            </section>
+
+            <section>
+                <h3>5 layers of Paas <span class="blue">Infrastructure</span></h3>
+
+                <img src="img/infrastructure.ico" class="transparent"/>
+
+                <p class="fragment"><span class="orange">Virtual resources</span> - IaaS is a key building block</p>
+
+                <p class="fragment"><span class="blue">High availability </span>- data backup and disaster recovery</p>
+
+                <p class="fragment"><span class="orange">Scalability</span> - increases in load and site traffic</p>
+
+                <p class="fragment"><span class="blue">Maintenance &amp; optimization </span>- tuning of web and
+                    database layer</p>
+
+                <p class="fragment"><span class="orange">Monitoring </span>- catch performance degradation or security
+                    threats</p>
+            </section>
+            <section>
+                <h3>5 layers of Paas <span class="orange">App Development</span></h3>
+
+                <img src="img/application-development.png" alt="Application Development" class="transparent">
+
+                <p class="fragment"><span class="blue">Continuous delivery </span>- separate environments, test
+                    automation, quality assurance</p>
+
+                <p class="fragment"><span class="orange">Application maintenance </span>- software and security
+                    updates
+                </p>
+
+                <p class="fragment"><span class="blue">Integration with third-party tools </span>- web services,
+                    databases, etc.</p>
+
+                <p class="fragment">Application and infrastructure <span class="orange">support services</span></p>
+
+                <p class="fragment">Support for <span class="blue">different development languages</span></p>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h3>Benefits of a PaaS to <span class="orange">customers</span></h3>
+                <img src="img/business-value.png" class="transparent"/>
+
+                <h3 class="fragment">What are the <span class="orange">business drivers</span> ?</h3>
+            </section>
+            <section>
+                <h3>Business Drivers for Paas</h3>
+
+                <div style="width: 100%">
+                    <div class="fragment" style="float: left; width: 33%">
+                        <img src="img/innovation.png" class="transparent"/>
+
+                        <h4>Innovation</h4>
+                    </div>
+                    <div class="fragment" style="float: left; width: 33%">
+                        <img src="img/time-to-market.png" class="transparent"/>
+
+                        <h4>Time To Market</h4>
+                    </div>
+
+                    <div class="fragment" style="float: left; width: 33%">
+                        <img src="img/cost-reduction.png" class="transparent"/>
+
+                        <h4>Cost Reduction</h4>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <h3>Paas Facilitates <span class="orange">Innovation</span></h3>
+                <img src="img/innovation.png" alt="Innovation" class="transparent"/>
+
+                <p class="fragment">It's a tool which enables <span class="orange">Enterprise DevOps</span></p>
+
+                <p class="fragment">High level of <span class="blue">standardization and automation</span></p>
+
+                <p class="fragment">Cost of <span class="orange">mistakes</span> is reduced</p>
+
+                <p class="fragment"><span class="blue">Experimentation</span> becomes a possibility</p>
+            </section>
+            <section>
+                <h3>Paas Decreases Time To Market</h3>
+                <img src="img/time-to-market.png" alt="Time To Market" class="transparent"/>
+
+                <p class="fragment">Keeps the <span class="orange">developer focus</span> on the applications</p>
+
+                <p class="fragment">Streamlines <span class="blue">IT Operations</span> and speeds up processes</p>
+
+                <p class="fragment">With <span class="orange">faster release cycles</span> as a result</p>
+            </section>
+            <section>
+                <h3>Paas Brings Cost Reduction</h3>
+                <img src="img/cost-reduction.png" alt="Cost Reduction" class="transparent"/>
+
+                <p class="fragment"><span class="blue">Elasticity</span> of servers, storage and network bandwidth</p>
+
+                <p class="fragment"><span class="orange">Software maintenance </span>is handled by the platform</p>
+
+                <p class="fragment">So IT Operations can <span class="orange">avoid daily routine tasks</span></p>
+            </section>
+        </section>
+        <section>
+            <h3>Some Examples of Paas</h3>
+
+            <img src="img/heroku.png" class="fragment transparent"/>
+            <img src="img/gae.png" class="fragment transparent"/>
+            <img src="img/elastic-beanstalk.png" class="fragment transparent"/>
+            <img src="img/openshift.png" class="fragment transparent"/>
+
+            <p class="fragment">But that's not why we're here today...</p>
+        </section>
+        <section>
+            <h3>Introducing</h3>
+
+            <img src="img/cf-logo.png" class="transparent"/>
+        </section>
+        <section>
+            <h3>What is Cloud Foundry?</h3>
+
+            <p class="fragment"><span class="blue">Industry standard </span>platform for cloud applications</p>
+
+            <p class="fragment"><span class="orange">Open Source</span> platform for <span class="blue">application lifecycle automation</span>
+            </p>
+
+            <p class="fragment"><span class="blue">Fastest growing</span> open source company in the world</p>
+
+            <p class="fragment"><span class="orange">Provides</span> build, test, deploy and scaling <span
+                    class="orange">capabilities</span></p>
+
+            <p class="fragment">Works with any* languages or framework</p>
+        </section>
+        <section>
+            <h3>Cloud Foundry <span class="blue">Foundation</span></h3>
+
+            <p class="fragment">Includes <span class="orange">major providers</span></p>
+
+            <div class="fragment">
+                <img src="img/cf-providers.png" class="transparent"/>
+            </div>
+        </section>
+        <section>
+            <h3>Flavours of Cloud Foundry</h3>
+
+            <img src="img/flavours.png" class="transparent"/>
+
+            <p class="fragment" style="color: orangered">Open Source Software</p>
+
+            <p class="fragment" style="color: limegreen">Vendored Distribution</p>
+
+            <p class="fragment" style="color: chocolate">Private Service</p>
+
+            <p class="fragment" style="color: lightpink">Public Service</p>
+        </section>
+        <section>
+            <h3>Open Source Software</h3>
+
+            <div class="fragment">
+                <img src="img/github.png" class="transparent"/>
+
+                <p>Available on Github as <span class="blue">cf-release</span></p>
+            </div>
+
+            <p class="fragment">Requires knowledge of <span class="orange">Bosh</span></p>
+        </section>
+        <section>
+            <h3>Vendored Distribution</h3>
+
+            <div><img src="img/pivotal.png" class="transparent fragment"/></div>
+
+            <div><img src="img/helion.PNG" class="transparent fragment"/></div>
+        </section>
+        <section>
+            <h3>Private Service</h3>
+
+            <div><img src="img/sap-hana.png" class="transparent fragment"/></div>
+
+            <div><img src="img/bluemix.png" class="transparent fragment"/></div>
+        </section>
+        <section>
+            <h3>Public Service</h3>
+
+            <div><img src="img/swisscom.png" class="transparent fragment"/></div>
+
+            <div><img src="img/bluemix.png" class="transparent fragment"/></div>
+
+            <div><img src="img/pivotal-ws.png" class="transparent fragment"/></div>
+
+            <div><img src="img/anynines.png" class="transparent fragment"/></div>
+        </section>
+        <section>
+            <h3>Cloud Foundry subsystems</h3>
+
+            <img src="img/architecture.png" class="transparent"/>
+
+            <p class="fragment"><span class="orange">Bosh </span>creates and deploys VMs on any IaaS</p>
+
+            <p class="fragment"><span class="blue">Cloud Controller </span>manages application lifecycles on those VMs
+            </p>
+
+            <p class="fragment"><span class="orange">Go Router </span>routes incoming traffic to the correct VMs</p>
+        </section>
+        <section id="architecture">
+            <h3>Cloud Foundry <span class="orange">Architecture</span></h3>
+
+            <img src="img/cf-architecture.png" height="600px" class="transparent"/>
+        </section>
+        <section>
+            <h3><span class="orange">Key Benefits </span>of Cloud Foundry</h3>
+
+            <p class="fragment">Application Portability</p>
+
+            <p class="fragment">Application auto-scaling</p>
+
+            <p class="fragment">Centralized platform administration</p>
+
+            <p class="fragment">Centralized logging</p>
+
+            <p class="fragment">Dynamic Routing</p>
+
+            <p class="fragment">Application Health Management</p>
+
+            <p class="fragment">Integration with Elasticsearch and Logstash</p>
+
+            <p class="fragment">Role-based access for deployed applications</p>
+
+            <p class="fragment">Provision for horizontal and vertical scaling</p>
+
+            <p class="fragment">Infrastructure security</p>
+
+            <p class="fragment">Support for various IaaS providers</p>
+        </section>
+        <section>
+            <h3>Deploying to Cloud Foundry can be <span class="blue">very simple</span></h3>
+
+            <pre>
+                <code class="bash">
+                    $ cf login -a api.run.pivotal.io
+
+                    $ git clone https://github.com/cloudfoundry-samples/sample_app
+
+                    $ cd sample_app/
+
+                    $ cf create-service postgresql turtle my-postgres
+
+                    $ cf push
+                </code>
+            </pre>
+        </section>
+        <section id="logos">
+            <h3>Companies using</h3>
+
+            <h3><span class="pivotal">Pivotal Cloud Foundry</span></h3>
+
+            <img src="img/ge-logo.png" height="80px" class="fragment transparent"/>
+            <img src="img/allstate-logo.png" height="80px" class="fragment transparent"/>
+            <img src="img/cl-logo.png" height="80px" class="fragment transparent"/>
+            <img src="img/comcast-logo.png" height="80px" class="fragment transparent"/>
+            <img src="img/ford-logo.png" height="80px" class="fragment transparent"/>
+            <img src="img/garmin-logo.png" height="80px" class="fragment transparent"/>
+            <img src="img/home-depot-logo.png" height="80px" class="fragment transparent"/>
+            <img src="img/irs-logo.png" height="80px" class="fragment transparent"/>
+            <img src="img/lm-logo.png" height="80px" class="fragment transparent"/>
+            <img src="img/mb-logo.png" height="80px" class="fragment transparent"/>
+            <img src="img/philips-logo.png" height="80px" class="fragment transparent"/>
+            <img src="img/verizon-logo.png" height="80px" class="fragment transparent"/>
+            <img src="img/ordina-logo.png" height="80px" class="fragment transparent"/>
+            <img src="img/yahoo-logo.png" height="80px" class="fragment transparent"/>
+        </section>
+        <section>
+            <h3>Yahoo Japan uses <span class="pivotal">PCF</span></h3>
+
+            <img src="img/yahoo-japan.png" class="transparent"/>
+        </section>
+        <section id="eighteenf">
+            <h3>Even the <span class="orange">U.S. government</span> runs on Cloud Foundry</h3>
+
+            <img src="img/18f-logo.png" class="transparent"/>
+
+            <p class="fragment"><i>"Transforming how the U.S. gov builds, buys and shares digital services"</i></p>
+
+            <p class="fragment">Design centric, agile, open and data-driven</p>
+
+            <p class="fragment"><span class="blue"><i>"Always be shipping"</i></span></p>
+
+            <p class="fragment">Just start. Build MVP. Iterate. Learn. Do it again</p>
+        </section>
+        <section>
+            <h3>Live Demo of Pivotal Web Services</h3>
+
+            <img src="img/pivotal-ws.png" class="transparent"/>
+        </section>
+        <section>
+            <h3>More Information</h3>
+
+            <p><a href="https://docs.cloudfoundry.org">Cloud Foundry Documentation</a></p>
+
+            <p><a href="https://bosh.io">Bosh Homepage</a></p>
+
+            <p><a href="https://run.pivotal.io/">Pivotal Web Services</a></p>
+        </section>
+        <section>
+            <h3>Cloud Foundry enables</h3>
+
+            <h3><span class="orange">Twelve Factor</span> apps</h3>
+
+            <p class="fragment">Set of <span class="orange">best practices</span> for developing and deploying <span class="blue">cloud-native software</span></p>
+
+            <p class="fragment">Practices translate into platform features and workflow requirements</p>
+
+            <p class="fragment">12factor.net</p>
+        </section>
+    </div>
+</div>
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+<script>
+    Reveal.initialize({
+        transition: 'convex',
+        dependencies: [
+            {
+                src: 'plugin/markdown/marked.js',
+                condition: function () {
+                    return !!document.querySelector('[data-markdown]');
+                }
+            },
+            {
+                src: 'plugin/highlight/highlight.js',
+                async: true,
+                callback: function () {
+                    hljs.initHighlightingOnLoad();
+                }
+            },
+            {
+                src: 'plugin/notes/notes.js',
+                async: true
+            }
+        ]
+    });
+</script>
+</body>
+</html>
