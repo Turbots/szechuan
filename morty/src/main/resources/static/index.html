@@ -178,11 +178,11 @@
                 <div class="fragment">
                     <p>What are the <span class="orange">criteria</span> for evaluating Paas providers?</p>
 
-                    <img src="img/criteria.png" class="transparent"/>
+                    <img src="img/rick-morty-criteria.jpg" class="transparent" width="250"/>
                 </div>
 
                 <p class="fragment">
-                    <img src="img/acquia.png" class="transparent"/>
+                    <img src="img/acquia.png" class="transparent" width="250"/>
                 </p>
 
                 <h3 class="fragment">"The <span class="orange">10 Layers Of PaaS"</span></h3>
@@ -318,6 +318,64 @@
             <p class="fragment">Works with any* languages or framework</p>
         </section>
         <section>
+            <h3>Cloud Foundry Technical Overview</h3>
+
+            <p class="fragment">
+                <img src="img/cloudfoundry-contracts.png" class="transparent" width="800px"/>
+            </p>
+
+            <p class="fragment">
+                <a href="https://www.oreilly.com/ideas/the-cloud-native-future">The Cloud Native Future</a> by Casey West
+            </p>
+        </section>
+        <section id="architecture">
+            <h3>Cloud Foundry <span class="orange">Architecture</span></h3>
+
+            <img src="img/cf-architecture.png" height="600px" class="transparent"/>
+        </section>
+        <section>
+            <h3><span class="orange">Key Benefits </span>of Cloud Foundry</h3>
+
+            <p class="fragment">Application Portability</p>
+
+            <p class="fragment">Application auto-scaling</p>
+
+            <p class="fragment">Centralized platform administration</p>
+
+            <p class="fragment">Centralized logging</p>
+
+            <p class="fragment">Dynamic Routing</p>
+
+            <p class="fragment">Application Health Management</p>
+
+            <p class="fragment">Integration with Elasticsearch and Logstash</p>
+
+            <p class="fragment">Role-based access for deployed applications</p>
+
+            <p class="fragment">Provision for horizontal and vertical scaling</p>
+
+            <p class="fragment">Infrastructure security</p>
+
+            <p class="fragment">Support for various IaaS providers</p>
+        </section>
+        <section>
+            <h3>Deploying to Cloud Foundry can be <span class="blue">very simple</span></h3>
+
+            <pre>
+                <code class="bash">
+                    $ cf login -a api.run.pivotal.io
+
+                    $ git clone https://github.com/cloudfoundry-samples/sample_app
+
+                    $ cd sample_app/
+
+                    $ cf create-service postgresql turtle my-postgres
+
+                    $ cf push
+                </code>
+            </pre>
+        </section>
+        <section>
             <h3>Cloud Foundry <span class="blue">Foundation</span></h3>
 
             <p class="fragment">Includes <span class="orange">major providers</span></p>
@@ -375,65 +433,6 @@
 
             <div><img src="img/anynines.png" class="transparent fragment"/></div>
         </section>
-        <section>
-            <h3>Cloud Foundry subsystems</h3>
-
-            <img src="img/architecture.png" class="transparent"/>
-
-            <p class="fragment"><span class="orange">Bosh </span>creates and deploys VMs on any IaaS</p>
-
-            <p class="fragment"><span class="blue">Cloud Controller </span>manages application lifecycles on those VMs
-            </p>
-
-            <p class="fragment"><span class="orange">Go Router </span>routes incoming traffic to the correct VMs</p>
-        </section>
-        <section id="architecture">
-            <h3>Cloud Foundry <span class="orange">Architecture</span></h3>
-
-            <img src="img/cf-architecture.png" height="600px" class="transparent"/>
-        </section>
-        <section>
-            <h3><span class="orange">Key Benefits </span>of Cloud Foundry</h3>
-
-            <p class="fragment">Application Portability</p>
-
-            <p class="fragment">Application auto-scaling</p>
-
-            <p class="fragment">Centralized platform administration</p>
-
-            <p class="fragment">Centralized logging</p>
-
-            <p class="fragment">Dynamic Routing</p>
-
-            <p class="fragment">Application Health Management</p>
-
-            <p class="fragment">Integration with Elasticsearch and Logstash</p>
-
-            <p class="fragment">Role-based access for deployed applications</p>
-
-            <p class="fragment">Provision for horizontal and vertical scaling</p>
-
-            <p class="fragment">Infrastructure security</p>
-
-            <p class="fragment">Support for various IaaS providers</p>
-        </section>
-        <section>
-            <h3>Deploying to Cloud Foundry can be <span class="blue">very simple</span></h3>
-
-            <pre>
-                <code class="bash">
-                    $ cf login -a api.run.pivotal.io
-
-                    $ git clone https://github.com/cloudfoundry-samples/sample_app
-
-                    $ cd sample_app/
-
-                    $ cf create-service postgresql turtle my-postgres
-
-                    $ cf push
-                </code>
-            </pre>
-        </section>
         <section id="logos">
             <h3>Companies using</h3>
 
@@ -473,29 +472,11 @@
             <p class="fragment">Just start. Build MVP. Iterate. Learn. Do it again</p>
         </section>
         <section>
-            <h3>Live Demo of Pivotal Web Services</h3>
+            <h3>Demo Time</h3>
 
-            <img src="img/pivotal-ws.png" class="transparent"/>
-        </section>
-        <section>
-            <h3>More Information</h3>
-
-            <p><a href="https://docs.cloudfoundry.org">Cloud Foundry Documentation</a></p>
-
-            <p><a href="https://bosh.io">Bosh Homepage</a></p>
-
-            <p><a href="https://run.pivotal.io/">Pivotal Web Services</a></p>
-        </section>
-        <section>
-            <h3>Cloud Foundry enables</h3>
-
-            <h3><span class="orange">Twelve Factor</span> apps</h3>
-
-            <p class="fragment">Set of <span class="orange">best practices</span> for developing and deploying <span class="blue">cloud-native software</span></p>
-
-            <p class="fragment">Practices translate into platform features and workflow requirements</p>
-
-            <p class="fragment">12factor.net</p>
+            <p class="fragment">
+                <img src="img/schwifty.png" class="transparent"/>
+            </p>
         </section>
     </div>
 </div>

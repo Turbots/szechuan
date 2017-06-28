@@ -1,16 +1,14 @@
 server:
-  port: 8080
+  port: ${PORT:8080}
 management:
   security:
     enabled: false
-  context-path: /
 eureka:
   instance:
-    hostname: ${vcap.application.uris[0]}
-    secureVirtualHostName: ${spring.application.name}
-    statusPageUrl: https://${eureka.instance.hostname}/info
-    healthCheckUrl: https://${eureka.instance.hostname}/health
-    homePageUrl: https://${eureka.instance.hostname}/
+    hostname: ${vcap.application.uris[0]:localhost}
+    statusPageUrl: http://${eureka.instance.hostname}/application/info
+    healthCheckUrl: http://${eureka.instance.hostname}/application/health
+    homePageUrl: http://${eureka.instance.hostname}/
   client:
     serviceUrl:
       defaultZone: ${vcap.services.eureka.credentials.uri:http://127.0.0.1:8761}/eureka/

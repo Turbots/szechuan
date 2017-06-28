@@ -16,3 +16,9 @@ spring:
         rick:
           destination: rick
           binder: rabbit
+        meeseeks:
+          destination: meeseeks
+          binder: rabbit
+        mcdonalds:
+          destination: mcdonalds
+          binder: rabbit

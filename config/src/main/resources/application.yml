@@ -1,5 +1,17 @@
 server:
   port: ${PORT:8888}
+management:
+  security:
+    enabled: false
+eureka:
+  instance:
+    hostname: ${vcap.application.uris[0]:localhost}
+    statusPageUrl: http://${eureka.instance.hostname}/application/info
+    healthCheckUrl: http://${eureka.instance.hostname}/application/health
+    homePageUrl: http://${eureka.instance.hostname}/
+  client:
+    serviceUrl:
+      defaultZone: ${vcap.services.eureka.credentials.uri:http://127.0.0.1:8761}/eureka/
 spring:
   cloud:
     config:

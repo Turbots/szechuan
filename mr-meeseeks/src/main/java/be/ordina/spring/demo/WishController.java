@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RestController
-@RequestMapping("/")
+@RequestMapping("/wish")
 public class WishController {
 
 	private final McDonaldsResource mcDonaldsResource;

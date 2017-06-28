@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @FeignClient(name = "http://mr-meeseeks", fallback = MeeseeksResource.MeeseeksResourceFallback.class, configuration = FeignConfiguration.class)
 public interface MeeseeksResource {
 
-	@PostMapping(path = "/", produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(path = "/wish", produces = MediaType.APPLICATION_JSON_VALUE)
 	ResponseEntity<WishResult> makeWish(@RequestBody Wish wish);
 
 	@Slf4j @Component class MeeseeksResourceFallback implements MeeseeksResource {

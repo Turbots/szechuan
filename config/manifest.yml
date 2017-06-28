@@ -1,0 +1,14 @@
+---
+memory: 768MB
+instances: 1
+env:
+  SPRING_PROFILES_ACTIVE : cloud
+applications:
+- name: config
+  path: target/config-0.0.1-SNAPSHOT.jar
+  buildpack: https://github.com/cloudfoundry/java-buildpack
+  timeout: 120
+  routes:
+    - route: rnm-config.cfapps.io
+  services:
+    - eureka

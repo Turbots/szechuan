@@ -19,7 +19,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("/")
+@RequestMapping("/events")
 public class EventController {
 
 	private final List<SseEmitter> emitters = Lists.newArrayList();
@@ -29,6 +29,15 @@ public class EventController {
 		inputChannels.rick().subscribe(new MicroVerseMessageHandler(RickAndMortyCharacter.RICK));
 		inputChannels.meeseeks().subscribe(new MicroVerseMessageHandler(RickAndMortyCharacter.MR_MEESEEKS));
 		inputChannels.mcdonalds().subscribe(new MicroVerseMessageHandler(RickAndMortyCharacter.MCDONALDS));
+	}
+
+	@GetMapping(produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+	public SseEmitter events() {
+		SseEmitter emitter = new SseEmitter();
+		emitters.add(emitter);
+		emitter.onCompletion(() -> emitters.remove(emitter));
+
+		return emitter;
 	}
 
 	class MicroVerseMessageHandler implements MessageHandler {
@@ -56,15 +65,6 @@ public class EventController {
 				}
 			});
 		}
-	}
-
-	@GetMapping(produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-	public SseEmitter events() {
-		SseEmitter emitter = new SseEmitter();
-		emitters.add(emitter);
-		emitter.onCompletion(() -> emitters.remove(emitter));
-
-		return emitter;
 	}
 
 	@Getter

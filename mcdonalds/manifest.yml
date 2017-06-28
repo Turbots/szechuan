@@ -1,0 +1,15 @@
+---
+memory: 768MB
+instances: 1
+env:
+  SPRING_PROFILES_ACTIVE : cloud
+applications:
+- name: mcdonalds
+  path: target/mcdonalds-0.0.1-SNAPSHOT.jar
+  buildpack: https://github.com/cloudfoundry/java-buildpack
+  timeout: 120
+  routes:
+    - route: rnm-mcdonalds.cfapps.io
+  services:
+    - eureka
+    - bunny
