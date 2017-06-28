@@ -6,9 +6,7 @@ management:
 eureka:
   instance:
     hostname: ${vcap.application.uris[0]:localhost}
-    statusPageUrl: http://${eureka.instance.hostname}/application/info
-    healthCheckUrl: http://${eureka.instance.hostname}/application/health
-    homePageUrl: http://${eureka.instance.hostname}/
+    non-secure-port: 80
   client:
     serviceUrl:
       defaultZone: ${vcap.services.eureka.credentials.uri:http://127.0.0.1:8761}/eureka/
@@ -25,7 +23,7 @@ spring:
           destination: mcdonalds
           binder: rabbit
     config:
-      uri: ${rnm-config.cfapps.io:http://127.0.0.1:8888}
+      uri: ${vcap.services.config.credentials.uri:http://127.0.0.1:8888}
 mcdonalds:
   order:
     chance: ${CHANCE:100}

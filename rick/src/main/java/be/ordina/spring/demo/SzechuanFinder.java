@@ -15,7 +15,7 @@ public class SzechuanFinder implements CommandLineRunner {
 	private final MeeseeksResource meeseeksResource;
 	private final OutputChannels outputChannels;
 
-	private static final int minimumRequestIntervalInMillis = 100;
+	private static final int minimumRequestIntervalInMillis = 50;
 
 	@Autowired
 	public SzechuanFinder(MeeseeksResource meeseeksResource, OutputChannels outputChannels) {
@@ -23,9 +23,10 @@ public class SzechuanFinder implements CommandLineRunner {
 		this.outputChannels = outputChannels;
 	}
 
-	@Override public void run(String... strings) throws Exception {
+	@Override
+	public void run(String... strings) throws Exception {
 		WishResult result = WishResult.NOT_GRANTED;
-		Wish wish = new Wish("MCNUGGET SZECHUAN DIPPING SAUCE");
+		Wish wish = new Wish("1989 MCNUGGET SZECHUAN DIPPING SAUCE");
 		int requestIntervalInMillis = 5000;
 
 		while (result == WishResult.NOT_GRANTED) {
@@ -35,6 +36,7 @@ public class SzechuanFinder implements CommandLineRunner {
 
 			if (response.getStatusCode() == HttpStatus.OK) {
 				result = response.getBody();
+				log.info("Mr Meeseeks came back with [{}]", result);
 			} else {
 				log.error("Mr Meeseeks seems to be malfunctioning! [HTTP " + response.getStatusCode() + "]");
 			}

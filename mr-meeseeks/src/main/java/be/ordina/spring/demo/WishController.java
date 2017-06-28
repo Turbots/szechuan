@@ -38,7 +38,7 @@ public class WishController {
 			}
 		} else {
 			log.info("OH NO! I CANT FIND A MCDONALDS! I'LL NEVER DIE!!!");
-			return ResponseEntity.notFound().build();
+			return ResponseEntity.ok(WishResult.NOT_GRANTED);
 		}
 	}
 }
