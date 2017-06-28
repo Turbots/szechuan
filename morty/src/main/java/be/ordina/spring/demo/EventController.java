@@ -69,7 +69,7 @@ public class EventController {
 
 	@Getter
 	@Builder
-	private class MicroVerseMessage {
+	private static class MicroVerseMessage {
 		private RickAndMortyCharacter origin;
 
 		private String message;
