@@ -48,9 +48,9 @@ public class SzechuanFinder {
 				requestIntervalInMillis = Math.max(minimumRequestIntervalInMillis, requestIntervalInMillis - 100);
 			}
 
-			log.info("Found it!");
 			outputChannels.rick()
 				.send(MessageBuilder.withPayload("WUB-A-DUB-A-DUB-DUB, I FINALLY GOT MY SAUCE!").build());
+			SEARCHING = false;
 		}
 	}
 }

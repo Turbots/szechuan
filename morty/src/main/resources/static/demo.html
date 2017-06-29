@@ -92,26 +92,24 @@
 
 <script type="application/javascript">
     function addMessage(characterId, message) {
-        var chatMessages = $('#' + characterId);
+        const chatMessages = $('#' + characterId);
         chatMessages.append('<li>' + message + '</li>');
         $('#' + characterId + '-chat-box').scrollTop(chatMessages.height());
     }
 
     function onLoad(jQuery) {
         if (!!window.EventSource) {
-            var source = new EventSource('/events');
-            source.addEventListener('message', function (e) {
-                var data = JSON.parse(e.data);
+            const source = new EventSource('/events');
+            source.addEventListener('message', e => {
+                const data = JSON.parse(e.data);
                 console.log(data);
                 addMessage(data.origin, data.message);
             }, false);
 
-            source.addEventListener('open', function (e) {
-                console.log('Connection is open');
-            }, false);
+            source.addEventListener('open', e => console.log('Connection is open'), false);
 
-            source.addEventListener('error', function (e) {
-                if (e.readyState == EventSource.CLOSED) {
+            source.addEventListener('error', e => {
+                if (e.readyState === EventSource.CLOSED) {
                     console.log('Connection was closed!');
                 }
             }, false);
