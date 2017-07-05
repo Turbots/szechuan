@@ -11,7 +11,7 @@
 
     <title>SHOW ME WHAT YOU GOT</title>
 
-    <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
     <style type="text/css">
         li {
             color: black;
@@ -87,33 +87,35 @@
 </div> <!-- /container -->
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-<script src="dist/js/bootstrap.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')</script>
+<script src="js/bootstrap.min.js"></script>
 
 <script type="application/javascript">
     function addMessage(characterId, message) {
-        const chatMessages = $('#' + characterId);
+        var chatMessages = $('#' + characterId);
         chatMessages.append('<li>' + message + '</li>');
         $('#' + characterId + '-chat-box').scrollTop(chatMessages.height());
     }
 
     function onLoad(jQuery) {
         if (!!window.EventSource) {
-            const source = new EventSource('/events');
-            source.addEventListener('message', e => {
-                const data = JSON.parse(e.data);
+            var source = new EventSource('/events');
+            source.addEventListener('message', function (e) {
+                var data = JSON.parse(e.data);
                 console.log(data);
                 addMessage(data.origin, data.message);
             }, false);
 
-            source.addEventListener('open', e => console.log('Connection is open'), false);
+                source.addEventListener('open', function (e) {
+                    console.log('Connection is open');
+                }, false);
 
-            source.addEventListener('error', e => {
-                if (e.readyState === EventSource.CLOSED) {
-                    console.log('Connection was closed!');
-                }
-            }, false);
-        } else {
+                source.addEventListener('error', function (e) {
+                    if (e.readyState == EventSource.CLOSED) {
+                            console.log('Connection was closed!');
+                        }
+                    }, false);
+                    } else {
             console.log('EventSource is not supported in this browser, try Chrome or Firefox!');
         }
     }
