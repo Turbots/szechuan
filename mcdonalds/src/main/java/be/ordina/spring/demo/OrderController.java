@@ -2,6 +2,7 @@ package be.ordina.spring.demo;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.integration.support.MessageBuilder;
@@ -20,19 +21,19 @@ public class OrderController {
 
 	private static final Random RAND = new Random();
 
-	private final OrderChanceProperties orderChanceProperties;
 	private final OutputChannels outputChannels;
 
+	@Value("${mcdonalds.order.chance:10}")
+	private int orderChance;
+
 	@Autowired
-	public OrderController(OrderChanceProperties orderChanceProperties,
-		OutputChannels outputChannels) {
-		this.orderChanceProperties = orderChanceProperties;
+	public OrderController(OutputChannels outputChannels) {
 		this.outputChannels = outputChannels;
 	}
 
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<OrderResult> makeOrder(@RequestBody @Valid Order order) {
-		int chance = RAND.nextInt(orderChanceProperties.getChance());
+		int chance = RAND.nextInt(this.orderChance);
 		log.info("Received Order [{}] - Your ticket number [{}]", order, chance);
 		if (order.getItem().toLowerCase().contains("szechuan")) {
 			if (chance == 1) {

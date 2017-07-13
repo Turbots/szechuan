@@ -18,7 +18,7 @@ public class AttentionGrabber {
 	private static final List<String> SHOUTS = Lists.newArrayList();
 	private static final Random RAND = new Random();
 
-	@Value("${INSTANCE_INDEX}")
+	@Value("${INSTANCE_INDEX:0}")
 	private String instanceId;
 
 	@Autowired

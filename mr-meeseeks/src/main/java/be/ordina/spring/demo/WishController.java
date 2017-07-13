@@ -20,7 +20,7 @@ public class WishController {
 	private final McDonaldsResource mcDonaldsResource;
 	private final OutputChannels outputChannels;
 
-	@Value("${INSTANCE_INDEX}")
+	@Value("${INSTANCE_INDEX:0}")
 	private String instanceId;
 
 	@Autowired
