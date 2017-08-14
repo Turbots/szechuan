@@ -2,172 +2,169 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="Demo of my Rick and Morty Spring Cloud Streams application">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>How Rick Finally Found His Szechuan Sauce - with Spring Cloud Stream</title>
-
-    <link rel="shortcut icon" href="images/favicon.png">
-
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css"/>
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
-    <style>
-        .mdl-list__item {
-            font-size: 1.0em;
-            padding: 8px;
-            min-height: 1.0em;
-        }
-        li:nth-child(odd) {
-            background-color: rgb(255,64,129);
-        }
-
-        li:nth-child(even) {
-            background-color: rgb(63,81,181);
-        }
-        .page-content {
-            margin: 2.0em;
-        }
-
-        .mdl-card__title {
-            height: 176px;
-        }
-
-        .mdl-card__title-text {
-            margin-top: -55px;
-            align-self: flex-start;
-        }
-
-        #card-title-rick {
-            margin-top: 50px;
-            background: url('img/rick.gif') center / cover;
-        }
-
-        #card-title-meeseeks {
-            margin-top: 50px;
-            background: url('img/meeseeks.gif') center / cover;
-        }
-
-        #card-title-mcdonalds {
-            margin-top: 50px;
-            background: url('img/mcdonalds.gif') center / cover;
-        }
-    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.1/css/bulma.min.css">
 </head>
-<body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
-<!-- Simple header with fixed tabs. -->
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header
-            mdl-layout--fixed-tabs">
-    <header class="mdl-layout__header">
-        <div class="mdl-layout__header-row">
-            <!-- Title -->
-            <span class="mdl-layout-title">How Rick Finally Found His Szechuan Sauce with <a
-                    href="http://cloud.spring.io/spring-cloud-stream/" target="_blank">Spring Cloud Stream</a></span>
-        </div>
-        <!-- Tabs -->
-        <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
-            <a href="#fixed-tab-1" class="mdl-layout__tab is-active">What</a>
-            <a href="#fixed-tab-2" class="mdl-layout__tab">Why</a>
-            <a href="#fixed-tab-3" class="mdl-layout__tab">How</a>
-        </div>
-    </header>
-    <div class="mdl-layout__drawer">
-        <span class="mdl-layout-title">Tiny Rick!</span>
-        <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" href="#fixed-tab-1">What</a>
-            <a class="mdl-navigation__link" href="#fixed-tab-2">Why</a>
-            <a class="mdl-navigation__link" href="#fixed-tab-3">How</a>
-        </nav>
-    </div>
-    <main class="mdl-layout__content">
-        <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
-            <div class="page-content">
-                <div class="mdl-grid">
-                    <div class="mdl-cell mdl-cell--4-col">
-                        <div class="mdl-card mdl-shadow--2dp">
-                            <div class="mdl-card__title" id="card-title-rick">
-                                <h2 class="mdl-card__title-text">Rick</h2>
-                            </div>
-                            <div class="mdl-card__supporting-text">
-                                Rick tells Morty that he wasn't motivated by saving his family, or indeed anything but
-                                that McNugget sauce. "I want that Mulan McNugget sauce, Morty. That's my series arc,
-                                Morty! If it takes nine seasons!"
-                            </div>
-                            <div class="mdl-card__actions mdl-card--border">
-                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">
-                                    Start
-                                </button>
-                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-                                    Stop
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mdl-cell mdl-cell--4-col">
-                        <div class="mdl-card mdl-shadow--2dp">
-                            <div class="mdl-card__title" id="card-title-meeseeks">
-                                <h2 class="mdl-card__title-text">Mr. Meeseeks</h2>
-                            </div>
-                            <div class="mdl-card__supporting-text">
-                                Meeseeks are creatures created to serve a singular purpose for which they will go to any
-                                length to fulfill. After they serve their purpose, they expire and vanish into the air.
-                                Their motivation to help others comes from the fact that existence is painful to a
-                                Meeseeks, and the only way to be removed from existence is to complete the task they
-                                were called to perform.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mdl-cell mdl-cell--4-col">
-                        <div class="mdl-card mdl-shadow--2dp">
-                            <div class="mdl-card__title" id="card-title-mcdonalds">
-                                <h2 class="mdl-card__title-text">McDonald's</h2>
-                            </div>
-                            <div class="mdl-card__supporting-text">
-                                Szechuan Chicken McNugget Sauce was a dipping sauce for McDonald's Chicken McNuggets.
-                                Offered as a tie-in for the movie Mulan, the sauce was only available in 1998.
-                            </div>
-                        </div>
-                    </div>
+<body>
+<section class="hero is-primary is-bold">
+    <div class="hero-body">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-narrow">
+                    <figure class="image is-64x64">
+                        <img src="img/spring-cloud.png">
+                    </figure>
                 </div>
-                <div class="mdl-grid">
-                    <div class="mdl-cell mdl-cell--4-col">
-                        <div class="mdl-card mdl-shadow--2dp">
-                            <div class="mdl-card__supporting-text" style="min-height: 300px; max-height: 300px; overflow-y: scroll;">
-                                <ul id="RICK" class="list-unstyled mdl-list"></ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mdl-cell mdl-cell--4-col">
-                        <div class="mdl-card mdl-shadow--2dp">
-                            <div class="mdl-card__supporting-text" style="min-height: 300px; max-height: 300px; overflow-y: scroll;">
-                                <ul id="MR_MEESEEKS" class="list-unstyled mdl-list"></ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mdl-cell mdl-cell--4-col">
-                        <div class="mdl-card mdl-shadow--2dp">
-                            <div class="mdl-card__supporting-text" style="min-height: 300px; max-height: 300px; overflow-y: scroll;">
-                                <ul id="MCDONALDS" class="list-unstyled mdl-list"></ul>
-                            </div>
-                        </div>
-                    </div>
+                <div class="column">
+                    <h1 class="title">
+                        Spring Cloud Streams
+                    </h1>
+                    <h2 class="subtitle">
+                        with Rick and Morty
+                    </h2>
                 </div>
             </div>
-        </section>
-        <section class="mdl-layout__tab-panel" id="fixed-tab-2">
-            <div class="page-content"><!-- Your content goes here --></div>
-        </section>
-        <section class="mdl-layout__tab-panel" id="fixed-tab-3">
-            <div class="page-content"><!-- Your content goes here --></div>
-        </section>
-    </main>
+        </div>
+    </div>
+</section>
+<nav class="level is-mobile" style="margin: 10px">
+    <div class="level-item has-text-centered">
+        <div>
+            <p class="heading">Messages</p>
+            <p class="title">0</p>
+        </div>
+    </div>
+    <div class="level-item has-text-centered">
+        <div>
+            <p class="heading">Meeseeks</p>
+            <p class="title">1</p>
+        </div>
+    </div>
+    <div class="level-item has-text-centered">
+        <div>
+            <p class="heading">Szechuan Sauce</p>
+            <p class="title">0</p>
+        </div>
+    </div>
+</nav>
+<div class="tile is-ancestor">
+    <div class="tile is-4 is-vertical is-parent">
+        <article class="tile is-child notification is-success">
+            <p class="title">Rick</p>
+            <p class="subtitle"><i>I want that Mulan McNugget sauce, Morty. That's my series arc! If it takes nine
+                seasons!</i></p>
+            <figure class="image is-4by3">
+                <img src="img/rick.gif">
+            </figure>
+        </article>
+    </div>
+    <div class="tile is-4 is-vertical is-parent">
+        <article class="tile is-child notification is-info">
+            <p class="title">Meeseeks</p>
+            <p class="subtitle">Meeseeks are creatures created to serve a singular purpose for which they will go to
+                any length to fulfill.
+                After they serve their purpose, they expire and vanish into the air.</p>
+            <figure class="image is-4by3">
+                <img src="img/meeseeks.gif">
+            </figure>
+        </article>
+    </div>
+    <div class="tile is-4 is-vertical is-parent">
+        <article class="tile is-child notification is-danger">
+            <p class="title">McDonalds</p>
+            <p class="subtitle">Szechuan Chicken McNugget Sauce was a dipping sauce for McDonald's Chicken McNuggets.
+                Offered as a tie-in for the movie Mulan, the sauce was only available in 1998.</p>
+            <figure class="image is-4by3">
+                <img src="img/mcdonalds.gif">
+            </figure>
+        </article>
+    </div>
 </div>
+<div class="tile is-ancestor">
+    <div class="tile is-4 is-vertical is-parent">
+        <article class="tile is-child is-success">
+            <table class="table is-fullwidth is-striped">
+                <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Message</th>
+                </tr>
+                </thead>
+                <tbody id="RICK-chat-box">
+                </tbody>
+            </table>
+        </article>
+    </div>
+    <div class="tile is-4 is-vertical is-parent">
+        <article class="tile is-child is-success">
+            <table class="table is-fullwidth is-striped">
+                <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Message</th>
+                </tr>
+                </thead>
+                <tbody id="MEESEEKS-chat-box">
+                </tbody>
+            </table>
+        </article>
+    </div>
+    <div class="tile is-4 is-vertical is-parent">
+        <article class="tile is-child is-success">
+            <table class="table is-fullwidth is-striped">
+                <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Message</th>
+                </tr>
+                </thead>
+                <tbody id="MCDONALDS-chat-box">
+                </tbody>
+            </table>
+        </article>
+    </div>
+</div>
+<footer class="footer">
+    <div class="container">
+        <div class="content has-text-centered">
+            <p>
+                Created by
+            </p>
+            <p>
+                <a href="https://www.twitter.com/dhubau" target="_blank" class="button is-primary">
+                    <span class="icon">
+                        <i class="fa fa-twitter"></i>
+                    </span>
+                    <span>Dieter Hubau</span>
+                </a>
+            </p>
+            <p>
+                <a href="https://www.github.com/Turbots/szechuan" target="_blank" class="button is-dark">
+                    <span class="icon">
+                        <i class="fa fa-github"></i>
+                    </span>
+                    <span>Source</span>
+                </a>
+            </p>
+            <p>
+                Hosted on <a href="https://run.pivotal.io" target="_blank">Pivotal Web Services</a>
+            </p>
+        </div>
+    </div>
+</footer>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 <script type="application/javascript">
+    function checkTime(i) {
+        return (i < 10) ? "0" + i : i;
+    }
+
     function addMessage(characterId, message) {
         const chatMessages = $('#' + characterId);
-        chatMessages.append('<li class=\"mdl-list__item\"><span class=\"mdl-list__item-primary-content\">' + message + '</span></li>');
+        const date = new Date();
+        const now = checkTime(date.getHours()) + ":" + checkTime(date.getMinutes()) + ":" + checkTime(date.getSeconds());
+        chatMessages.append('<tr><td></td>' + now + '<td>' + message + '</td></tr>');
         $('#' + characterId + '-chat-box').scrollTop(chatMessages.height());
     }
 
@@ -176,7 +173,6 @@
             const source = new EventSource('/events');
             source.addEventListener('message', e => {
                 const data = JSON.parse(e.data);
-                console.log(data);
                 addMessage(data.origin, data.message);
             }, false);
 
