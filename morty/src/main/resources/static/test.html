@@ -51,39 +51,6 @@
 </nav>
 <div class="tile is-ancestor">
     <div class="tile is-4 is-vertical is-parent">
-        <article class="tile is-child notification is-success">
-            <p class="title">Rick</p>
-            <p class="subtitle"><i>I want that Mulan McNugget sauce, Morty. That's my series arc! If it takes nine
-                seasons!</i></p>
-            <figure class="image is-4by3">
-                <img src="img/rick.gif">
-            </figure>
-        </article>
-    </div>
-    <div class="tile is-4 is-vertical is-parent">
-        <article class="tile is-child notification is-info">
-            <p class="title">Meeseeks</p>
-            <p class="subtitle">Meeseeks are creatures created to serve a singular purpose for which they will go to
-                any length to fulfill.
-                After they serve their purpose, they expire and vanish into the air.</p>
-            <figure class="image is-4by3">
-                <img src="img/meeseeks.gif">
-            </figure>
-        </article>
-    </div>
-    <div class="tile is-4 is-vertical is-parent">
-        <article class="tile is-child notification is-danger">
-            <p class="title">McDonalds</p>
-            <p class="subtitle">Szechuan Chicken McNugget Sauce was a dipping sauce for McDonald's Chicken McNuggets.
-                Offered as a tie-in for the movie Mulan, the sauce was only available in 1998.</p>
-            <figure class="image is-4by3">
-                <img src="img/mcdonalds.gif">
-            </figure>
-        </article>
-    </div>
-</div>
-<div class="tile is-ancestor">
-    <div class="tile is-4 is-vertical is-parent">
         <article class="tile is-child is-success">
             <table class="table is-fullwidth is-striped">
                 <thead>
@@ -126,6 +93,39 @@
         </article>
     </div>
 </div>
+<div class="tile is-ancestor">
+    <div class="tile is-4 is-vertical is-parent">
+        <article class="tile is-child notification is-success">
+            <p class="title">Rick</p>
+            <p class="subtitle"><i>I want that Mulan McNugget sauce, Morty. That's my series arc! If it takes nine
+                seasons!</i></p>
+            <figure class="image is-4by3">
+                <img src="img/rick.gif">
+            </figure>
+        </article>
+    </div>
+    <div class="tile is-4 is-vertical is-parent">
+        <article class="tile is-child notification is-info">
+            <p class="title">Meeseeks</p>
+            <p class="subtitle">Meeseeks are creatures created to serve a singular purpose for which they will go to
+                any length to fulfill.
+                After they serve their purpose, they expire and vanish into the air.</p>
+            <figure class="image is-4by3">
+                <img src="img/meeseeks.gif">
+            </figure>
+        </article>
+    </div>
+    <div class="tile is-4 is-vertical is-parent">
+        <article class="tile is-child notification is-danger">
+            <p class="title">McDonalds</p>
+            <p class="subtitle">Szechuan Chicken McNugget Sauce was a dipping sauce for McDonald's Chicken McNuggets.
+                Offered as a tie-in for the movie Mulan, the sauce was only available in 1998.</p>
+            <figure class="image is-4by3">
+                <img src="img/mcdonalds.gif">
+            </figure>
+        </article>
+    </div>
+</div>
 <footer class="footer">
     <div class="container">
         <div class="content has-text-centered">
@@ -155,6 +155,7 @@
     </div>
 </footer>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://unpkg.com/vue"></script>
 <script type="application/javascript">
     function checkTime(i) {
         return (i < 10) ? "0" + i : i;
@@ -175,11 +176,9 @@
                 const data = JSON.parse(e.data);
                 addMessage(data.origin, data.message);
             }, false);
-
             source.addEventListener('open', e => console.log('Connection is open'), false);
-
             source.addEventListener('error', e => {
-                if (e.readyState === EventSource.CLOSED) {
+                if(e.readyState === EventSource.CLOSED) {
                     console.log('Connection was closed!');
                 }
             }, false);
