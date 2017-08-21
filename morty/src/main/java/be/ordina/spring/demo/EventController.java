@@ -1,8 +1,5 @@
 package be.ordina.spring.demo;
 
-import com.google.common.collect.Lists;
-import lombok.Builder;
-import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -15,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -22,13 +20,14 @@ import java.util.List;
 @RequestMapping("/events")
 public class EventController {
 
-	private final List<SseEmitter> emitters = Lists.newArrayList();
+	private final List<SseEmitter> emitters = new ArrayList<>();
 
 	@Autowired
 	public EventController(InputChannels inputChannels) {
-		inputChannels.rick().subscribe(new MicroVerseMessageHandler(RickAndMortyCharacter.RICK));
-		inputChannels.meeseeks().subscribe(new MicroVerseMessageHandler(RickAndMortyCharacter.MR_MEESEEKS));
-		inputChannels.mcdonalds().subscribe(new MicroVerseMessageHandler(RickAndMortyCharacter.MCDONALDS));
+		GlipGlopHandler glipGlopHandler = new GlipGlopHandler();
+		inputChannels.rick().subscribe(glipGlopHandler);
+		inputChannels.meeseeks().subscribe(glipGlopHandler);
+		inputChannels.mcdonalds().subscribe(glipGlopHandler);
 	}
 
 	@GetMapping(produces = MediaType.TEXT_EVENT_STREAM_VALUE)
@@ -40,24 +39,13 @@ public class EventController {
 		return emitter;
 	}
 
-	class MicroVerseMessageHandler implements MessageHandler {
-
-		private final RickAndMortyCharacter character;
-
-		MicroVerseMessageHandler(final RickAndMortyCharacter character) {
-			this.character = character;
-		}
+	class GlipGlopHandler implements MessageHandler {
 
 		@Override public void handleMessage(Message<?> m) throws MessagingException {
-			MicroVerseMessage microVerseMessage =
-				MicroVerseMessage.builder()
-					.origin(this.character)
-					.message("" + m.getPayload())
-					.build();
-
+			GlipGlop glipGlop = (GlipGlop) m.getPayload();
 			emitters.forEach(emitter -> {
 				try {
-					emitter.send(microVerseMessage);
+					emitter.send(glipGlop);
 				} catch (IOException e) {
 					emitter.complete();
 					emitters.remove(emitter);
@@ -65,13 +53,5 @@ public class EventController {
 				}
 			});
 		}
-	}
-
-	@Getter
-	@Builder
-	private static class MicroVerseMessage {
-		private RickAndMortyCharacter origin;
-
-		private String message;
 	}
 }

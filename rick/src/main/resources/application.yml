@@ -3,22 +3,12 @@ server:
 management:
   security:
     enabled: false
-eureka:
-  instance:
-    hostname: ${vcap.application.uris[0]:localhost}
-    non-secure-port: 80
-  client:
-    serviceUrl:
-      defaultZone: ${vcap.services.eureka.credentials.uri:http://127.0.0.1:8761}/eureka/
 spring:
   rabbitmq:
     host: ${cloudamqp.credentials.http_api_uri:localhost}
-    port: 32774
+    port: 5672
     username: guest
     password: guest
   cloud:
     stream:
-      bindings:
-        rick:
-          destination: rick
-          binder: rabbit
+      default-binder: rabbit

@@ -13,12 +13,9 @@ eureka:
 spring:
   rabbitmq:
     host: ${cloudamqp.credentials.http_api_uri:localhost}
-    port: 32774
+    port: 5672
     username: guest
     password: guest
   cloud:
     stream:
-      bindings:
-        rick:
-          destination: meeseeks
-          binder: rabbit
+      default-binder: rabbit

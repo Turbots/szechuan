@@ -5,10 +5,5 @@ import org.springframework.messaging.SubscribableChannel;
 
 public interface InputChannels {
 
-	@Input
-	SubscribableChannel rick();
-
-	@Input
-	SubscribableChannel mcdonalds();
-
+	@Input SubscribableChannel meeseeks();
 }

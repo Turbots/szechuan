@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 cd config
 mvn clean install
 cf push
