@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-cd config
+cd common
+mvn clean install
+cd ..
+
+cd meeseeks-box
 mvn clean install
 cf push
 cd ..
@@ -16,6 +20,11 @@ cf push
 cd ..
 
 cd mcdonalds
+mvn clean install
+cf push
+cd ..
+
+cd morty
 mvn clean install
 cf push
 cd ..

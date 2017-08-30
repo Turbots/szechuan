@@ -4,11 +4,9 @@ instances: 1
 env:
   SPRING_PROFILES_ACTIVE : cloud
 applications:
-- name: meeseeks
-  path: target/mr-meeseeks-0.0.1-SNAPSHOT.jar
+- name: meeseeks-box
+  path: target/meeseeks-box-0.0.1-SNAPSHOT.jar
   buildpack: https://github.com/cloudfoundry/java-buildpack
   timeout: 120
   routes:
-    - route: rnm-meeseeks.cfapps.io
-  services:
-    - bunny
+    - route: rnm-meeseeks-box.cfapps.io

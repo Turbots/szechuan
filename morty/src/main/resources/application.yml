@@ -5,10 +5,22 @@ management:
     enabled: false
 spring:
   rabbitmq:
-    host: ${cloudamqp.credentials.http_api_uri:localhost}
+    host: localhost
     port: 5672
     username: guest
     password: guest
   cloud:
     stream:
       default-binder: rabbit
+---
+spring:
+  profiles: dev
+spring:
+  resources:
+    static-locations: classpath:/META-INF/resources, classpath:/resources, classpath:/static, classpath:/public, file:morty/frontend/dist
+---
+spring:
+    profiles: cloud
+spring:
+  rabbitmq:
+    host: ${cloudamqp.credentials.http_api_uri:localhost}

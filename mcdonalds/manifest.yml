@@ -11,6 +11,4 @@ applications:
   routes:
     - route: rnm-mcdonalds.cfapps.io
   services:
-    - eureka
-    - config
     - bunny

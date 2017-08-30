@@ -11,5 +11,4 @@ applications:
   routes:
     - route: rnm-rick.cfapps.io
   services:
-    - eureka
     - bunny
