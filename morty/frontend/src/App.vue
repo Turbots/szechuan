@@ -2,93 +2,94 @@
   <div>
     <my-header></my-header>
     <my-nav :nrOfMessages="nrOfMessages" :nrOfMeeseeks="nrOfMeeseeks" :nrOfSzechuanFound="nrOfSzechuanFound"></my-nav>
-    <div class="tile is-ancestor">
-      <div class="tile is-4 is-vertical is-parent">
-        <article class="tile is-child notification is-success">
-          <p class="title">Rick</p>
-          <p class="subtitle"><i>I want that Mulan McNugget sauce, Morty. That's my series arc! If it takes nine
-            seasons!</i></p>
-          <figure class="image is-4by3">
-            <img src="img/rick.gif">
-          </figure>
-        </article>
+    <div class="columns">
+      <div class="column">
+        <table class="table is-fullwidth is-striped is-narrow">
+          <thead>
+          <tr>
+            <th>Time</th>
+            <th>Message</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr v-for="item in rick">
+            <td>{{ item.time }}</td>
+            <td>{{ item.message }}</td>
+          </tr>
+          </tbody>
+        </table>
       </div>
-      <div class="tile is-4 is-vertical is-parent">
-        <article class="tile is-child notification is-info">
-          <p class="title">Meeseeks</p>
-          <p class="subtitle">Meeseeks are creatures created to serve a singular purpose for which they will go to
-            any length to fulfill.
-            After they serve their purpose, they expire and vanish into the air.</p>
-          <figure class="image is-4by3">
-            <img src="img/meeseeks.gif">
-          </figure>
-        </article>
+      <div class="column">
+        <table class="table is-fullwidth is-striped is-narrow">
+          <thead>
+          <tr>
+            <th>Time</th>
+            <th>Instance</th>
+            <th>Message</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr v-for="item in meeseeks">
+            <td>{{ item.time }}</td>
+            <td>{{ item.instance }}</td>
+            <td>{{ item.message }}</td>
+          </tr>
+          </tbody>
+        </table>
       </div>
-      <div class="tile is-4 is-vertical is-parent">
-        <article class="tile is-child notification is-danger">
-          <p class="title">McDonalds</p>
-          <p class="subtitle">Szechuan Chicken McNugget Sauce was a dipping sauce for McDonald's Chicken McNuggets.
-            Offered as a tie-in for the movie Mulan, the sauce was only available in 1998.</p>
-          <figure class="image is-4by3">
-            <img src="img/mcdonalds.gif">
-          </figure>
-        </article>
+      <div class="column">
+        <table class="table is-fullwidth is-striped is-narrow">
+          <thead>
+          <tr>
+            <th>Time</th>
+            <th>Message</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr v-for="item in mcdonalds">
+            <td>{{ item.time }}</td>
+            <td>{{ item.message }}</td>
+          </tr>
+          </tbody>
+        </table>
       </div>
     </div>
-    <div class="tile is-ancestor">
-      <div class="tile is-4 is-vertical is-parent">
-        <article class="tile is-child is-success">
-          <table class="table is-fullwidth is-striped">
-            <thead>
-            <tr>
-              <th>Time</th>
-              <th>Message</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr v-for="item in rick">
-              <td>{{ item.time }}</td>
-              <td>{{ item.message }}</td>
-            </tr>
-            </tbody>
-          </table>
-        </article>
+    <div class="columns is-mobile is-multiline">
+      <div class="column">
+        <div class="box notification is-success">
+          <article style="padding: 1em;">
+            <p class="title">Rick</p>
+            <p class="subtitle"><i>Rick Sanchez is a genius scientist whose alcoholism and reckless, nihilistic behavior are a source of concern for his daughter's family</i>
+            </p>
+          </article>
+          <figure class="image">
+            <img src="img/rick.gif">
+          </figure>
+        </div>
       </div>
-      <div class="tile is-4 is-vertical is-parent">
-        <article class="tile is-child is-success">
-          <table class="table is-fullwidth is-striped">
-            <thead>
-            <tr>
-              <th>Time</th>
-              <th>Message</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr v-for="item in meeseeks">
-              <td>{{ item.time }}</td>
-              <td>{{ item.message }}</td>
-            </tr>
-            </tbody>
-          </table>
-        </article>
+      <div class="column">
+        <div class="box notification is-warning">
+          <article style="padding: 1em;">
+            <p class="title">Meeseeks</p>
+            <p class="subtitle"><i>Meeseeks are creatures created to serve a singular purpose for which they will go to any length to fulfill. After they serve their purpose, they expire and vanish into the air.</i>
+            </p>
+          </article>
+          <figure class="image">
+            <img src="img/meeseeks.gif">
+          </figure>
+        </div>
       </div>
-      <div class="tile is-4 is-vertical is-parent">
-        <article class="tile is-child is-success">
-          <table class="table is-fullwidth is-striped">
-            <thead>
-            <tr>
-              <th>Time</th>
-              <th>Message</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr v-for="item in mcdonalds">
-              <td>{{ item.time }}</td>
-              <td>{{ item.message }}</td>
-            </tr>
-            </tbody>
-          </table>
-        </article>
+      <div class="column">
+        <div class="box notification is-danger">
+          <article style="padding: 1em;">
+            <p class="title">McDonalds</p>
+            <p class="subtitle"><i>Szechuan Chicken McNugget Sauce was a dipping sauce for McDonald's Chicken McNuggets. The sauce was only available in 1998.</i>
+            </p>
+          </article>
+          <figure class="image">
+            <img src="img/mcdonalds.gif">
+          </figure>
+        </div>
       </div>
     </div>
     <my-footer></my-footer>
@@ -131,8 +132,12 @@
           if (data.quote.author === 'MR_MEESEEKS') {
             this.addMessage(this.meeseeks, {
               time: time,
+              instance: data.instanceIndex,
               message: data.quote.message
             })
+            this.nrOfMeeseeks = Math.max.apply(Math, this.meeseeks.map(function (item) {
+              return item.instance + 1
+            }))
           } else if (data.quote.author === 'RICK') {
             this.addMessage(this.rick, {
               time: time,
@@ -158,7 +163,7 @@
         }, false)
       },
       addMessage (array, message) {
-        if (array.length > 10) {
+        if (array.length >= 8) {
           array.shift()
         }
         array.push(message)
