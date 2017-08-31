@@ -44,7 +44,6 @@ public class MrMeeseekRoutine {
 		this.inputChannels.rick().subscribe(message -> {
 			GlipGlop glipGlop = (GlipGlop) message.getPayload();
 			if (glipGlop.getQuote() == I_WANT_MY_SZECHUAN_SAUCE) {
-				log.info("OHHH YEA CAN DO!");
 				this.outputChannels.meeseeks().send(MessageBuilder
 					.withPayload(new GlipGlop(RickAndMortyQuote.OOOH_YEAH_CAN_DO, instanceId))
 					.build());
