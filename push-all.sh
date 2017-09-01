@@ -14,7 +14,7 @@ mvn clean install
 cf push
 cd ..
 
-cd meeseeks
+cd mr-meeseeks
 mvn clean install
 cf push
 cd ..

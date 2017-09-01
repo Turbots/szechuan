@@ -10,6 +10,7 @@ import org.cloudfoundry.operations.CloudFoundryOperations;
 import org.cloudfoundry.operations.DefaultCloudFoundryOperations;
 import org.cloudfoundry.operations.applications.GetApplicationRequest;
 import org.cloudfoundry.operations.applications.ScaleApplicationRequest;
+import org.cloudfoundry.operations.applications.StartApplicationRequest;
 import org.cloudfoundry.reactor.ConnectionContext;
 import org.cloudfoundry.reactor.DefaultConnectionContext;
 import org.cloudfoundry.reactor.TokenProvider;
@@ -31,12 +32,21 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @SpringBootApplication
-public class MeeseeksBoxApplication {
+public class MeeseeksBoxApplication extends WebMvcConfigurerAdapter {
 
     public static void main(String[] args) {
         SpringApplication.run(MeeseeksBoxApplication.class, args);
+    }
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowedOrigins("*")
+                .allowedMethods("OPTIONS", "POST", "DELETE");
     }
 
     @Configuration
@@ -123,18 +133,36 @@ public class MeeseeksBoxApplication {
                     .subscribe(response -> {
                         int currentInstances = response.getInstances();
                         log.info("Mr Meeseeks is running [{}] instances", currentInstances);
-                        int instanceCount = Math.max(3, currentInstances + 1);
+                        int instanceCount = Math.min(3, currentInstances + 1);
                         this.cloudFoundryOperations.applications()
                                 .scale(ScaleApplicationRequest.builder()
                                         .name(MR_MEESEEKS_APP_NAME)
                                         .instances(instanceCount)
-                                        .build()).subscribe();
+                                        .build()).subscribe((scaleResponse) -> {
+                            if (!"started".equalsIgnoreCase(response.getRequestedState())) {
+                                log.info("Starting Mr Meeseeks", currentInstances);
+                                this.cloudFoundryOperations.applications()
+                                        .start(StartApplicationRequest.builder()
+                                                .name(MR_MEESEEKS_APP_NAME)
+                                                .build()).subscribe();
+                            }
+                        });
                     }, throwable -> log.error("Could not find Meeseeks application", throwable));
         }
 
         @DeleteMapping
         public void killMeeseekses() {
+            log.info("Checking whether Mr Meeseeks can be terminated...");
 
+            this.cloudFoundryOperations.applications().get(GetApplicationRequest.builder().name(MR_MEESEEKS_APP_NAME).build())
+                    .subscribe(response -> {
+                        log.info("Scaling Mr Meeseeks to 0 instances...");
+                        this.cloudFoundryOperations.applications()
+                                .scale(ScaleApplicationRequest.builder()
+                                        .instances(0)
+                                        .name(MR_MEESEEKS_APP_NAME)
+                                        .build()).subscribe();
+                    }, throwable -> log.error("Could not terminate Mr Meeseeks", throwable));
         }
     }
 
