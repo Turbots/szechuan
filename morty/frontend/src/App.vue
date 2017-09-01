@@ -156,7 +156,7 @@
               message: data.quote.message
             })
             this.nrOfMeeseeks = Math.max.apply(Math, this.meeseeks.map(function (item) {
-              return item.instance + 1
+              return parseInt(item.instance) + 1
             }))
           } else if (data.quote.author === 'RICK') {
             this.addMessage(this.rick, {
