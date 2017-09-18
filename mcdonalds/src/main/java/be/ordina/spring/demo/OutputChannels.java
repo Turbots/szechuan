@@ -6,5 +6,5 @@ import org.springframework.messaging.MessageChannel;
 public interface OutputChannels {
 
 	@Output
-	MessageChannel mcdonalds();
+	MessageChannel meeseeks();
 }

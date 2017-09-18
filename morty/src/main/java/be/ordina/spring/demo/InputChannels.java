@@ -10,4 +10,7 @@ public interface InputChannels {
 	@Input SubscribableChannel meeseeks();
 
 	@Input SubscribableChannel mcdonalds();
+
+	@Input SubscribableChannel microverse();
+
 }

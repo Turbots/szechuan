@@ -28,6 +28,7 @@ public class EventController {
 		inputChannels.rick().subscribe(glipGlopHandler);
 		inputChannels.meeseeks().subscribe(glipGlopHandler);
 		inputChannels.mcdonalds().subscribe(glipGlopHandler);
+		inputChannels.microverse().subscribe(glipGlopHandler);
 	}
 
 	@GetMapping(produces = MediaType.TEXT_EVENT_STREAM_VALUE)
@@ -35,6 +36,8 @@ public class EventController {
 		SseEmitter emitter = new SseEmitter();
 		emitters.add(emitter);
 		emitter.onCompletion(() -> emitters.remove(emitter));
+		emitter.onError(throwable -> emitters.remove(emitter));
+		emitter.onTimeout(() -> emitters.remove(emitter));
 
 		return emitter;
 	}

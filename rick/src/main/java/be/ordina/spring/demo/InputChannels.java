@@ -6,5 +6,5 @@ import org.springframework.messaging.SubscribableChannel;
 public interface InputChannels {
 
 	@Input
-	SubscribableChannel meeseeks();
+	SubscribableChannel rick();
 }

@@ -13,7 +13,6 @@ import static be.ordina.spring.demo.RickAndMortyQuote.*;
 public class SzechuanSauceFinder {
 
 	private final OutputChannels outputChannels;
-	private final InputChannels inputChannels;
 
 	private static final int minimumRequestIntervalInMillis = 50;
 
@@ -24,12 +23,11 @@ public class SzechuanSauceFinder {
 	@Autowired
 	public SzechuanSauceFinder(InputChannels inputChannels, OutputChannels outputChannels) {
 		this.outputChannels = outputChannels;
-		this.inputChannels = inputChannels;
-		this.inputChannels.meeseeks().subscribe((message -> {
+		inputChannels.rick().subscribe((message -> {
 			GlipGlop glipGlop = (GlipGlop) message.getPayload();
 			if (glipGlop.getQuote() == ALL_DONE) {
 				stopSearching();
-				this.outputChannels.rick().send(buildMessage(WUBBA_LUBBA_DUB_DUB, C_137));
+				this.outputChannels.microverse().send(buildMessage(WUBBA_LUBBA_DUB_DUB, C_137));
 			}
 		}));
 	}
@@ -38,24 +36,24 @@ public class SzechuanSauceFinder {
 		return MessageBuilder.withPayload(new GlipGlop(quote, instanceId)).build();
 	}
 
-	public void findThatSauce() throws InterruptedException {
+	void findThatSauce() throws InterruptedException {
 		if (!SEARCHING) {
 			SEARCHING = true;
 			int requestIntervalInMillis = 5000;
 
 			while (SEARCHING) {
-				this.outputChannels.rick().send(buildMessage(I_WANT_MY_SZECHUAN_SAUCE, C_137));
+				this.outputChannels.meeseeks().send(buildMessage(I_WANT_MY_SZECHUAN_SAUCE, C_137));
 
 				Thread.sleep(requestIntervalInMillis);
 
-				requestIntervalInMillis = Math.max(minimumRequestIntervalInMillis, requestIntervalInMillis - 100);
+				requestIntervalInMillis = Math.max(minimumRequestIntervalInMillis, requestIntervalInMillis - 200);
 			}
 
 			SEARCHING = false;
 		}
 	}
 
-	public void stopSearching() {
+	void stopSearching() {
 		SEARCHING = false;
 	}
 }

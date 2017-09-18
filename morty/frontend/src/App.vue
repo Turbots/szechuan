@@ -7,6 +7,7 @@
     <audio ref="imMrMeeseeks1" src="sounds/mr-meeseeks-1.mp3"></audio>
     <audio ref="imMrMeeseeks2" src="sounds/mr-meeseeks-2.mp3"></audio>
     <audio ref="imMrMeeseeks3" src="sounds/mr-meeseeks-3.wav"></audio>
+    <audio ref="justWannaDie" src="sounds/just-wanna-die.mp3"></audio>
     <audio ref="wubbaLubbaDubDub" src="sounds/wubba-lubba-dub-dub.wav"></audio>
     <div class="columns">
       <div class="column">
@@ -149,11 +150,13 @@
               this.$refs.imMrMeeseeks2.play()
             } else if (data.quote.message === 'LOOK_AT_ME_IM_MR_MEESEEKS') {
               this.$refs.imMrMeeseeks3.play()
+            } else if (data.quote.message === 'NOW_I_LL_NEVER_DIE') {
+              this.$refs.justWannaDie.play()
             }
             this.addMessage(this.meeseeks, {
               time: time,
               instance: data.instanceIndex,
-              message: data.quote.message
+              message: data.quote.text
             })
             this.nrOfMeeseeks = Math.max.apply(Math, this.meeseeks.map(function (item) {
               return parseInt(item.instance) + 1
@@ -161,12 +164,12 @@
           } else if (data.quote.author === 'RICK') {
             this.addMessage(this.rick, {
               time: time,
-              message: data.quote.message
+              message: data.quote.text
             })
           } else if (data.quote.author === 'MCDONALDS') {
             this.addMessage(this.mcdonalds, {
               time: time,
-              message: data.quote.message
+              message: data.quote.text
             })
           }
 

@@ -6,5 +6,8 @@ import org.springframework.messaging.MessageChannel;
 public interface OutputChannels {
 
 	@Output
-	MessageChannel rick();
+	MessageChannel meeseeks();
+
+	@Output
+	MessageChannel microverse();
 }

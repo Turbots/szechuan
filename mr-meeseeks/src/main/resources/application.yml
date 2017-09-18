@@ -19,3 +19,6 @@ spring:
   cloud:
     stream:
       default-binder: rabbit
+      bindings:
+        meeseeks:
+          group: szechuan-finder
