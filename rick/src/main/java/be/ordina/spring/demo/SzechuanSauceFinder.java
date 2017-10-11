@@ -1,6 +1,5 @@
 package be.ordina.spring.demo;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.integration.support.MessageBuilder;
 import org.springframework.messaging.Message;
@@ -8,7 +7,6 @@ import org.springframework.stereotype.Component;
 
 import static be.ordina.spring.demo.RickAndMortyQuote.*;
 
-@Slf4j
 @Component
 public class SzechuanSauceFinder {
 
