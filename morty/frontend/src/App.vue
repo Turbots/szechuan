@@ -152,6 +152,8 @@
               this.$refs.imMrMeeseeks3.play()
             } else if (data.quote.message === 'NOW_I_LL_NEVER_DIE') {
               this.$refs.justWannaDie.play()
+            } else if (data.quote.message === 'MR_MEESEEKS_SPAWN') {
+              this.$refs.mrMeeseeksSpawn.play()
             }
             this.addMessage(this.meeseeks, {
               time: time,
@@ -200,7 +202,6 @@
         })
       },
       spawnMeeseeks () {
-        this.$refs.mrMeeseeksSpawn.play()
         axios.post('https://rnm-meeseeks-box.cfapps.io/').catch(function (error) {
           console.log(error.message)
         })

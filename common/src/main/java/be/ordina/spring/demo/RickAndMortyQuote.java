@@ -12,6 +12,8 @@ public enum RickAndMortyQuote {
 	I_WANT_MY_SZECHUAN_SAUCE(RICK, "I want my szechuan sauce!"),
 	WUBBA_LUBBA_DUB_DUB(RICK, "Wubba Lubba Dub Dub!"),
 
+	MR_MEESEEKS_SPAWN(MR_MEESEEKS, "I'm Mr Meeseeks, look at me"),
+
 	IM_MR_MEESEEKS_LOOK_AT_ME(MR_MEESEEKS, "I'm Mr Meeseeks, look at me"),
 	HEY_THERE_IM_MR_MEESEEKS(MR_MEESEEKS, "Hey there, I'm Mr Meeseeks"),
 	LOOK_AT_ME_IM_MR_MEESEEKS(MR_MEESEEKS, "Look at me, I'm Mr Meeseeks"),
