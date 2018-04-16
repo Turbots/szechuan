@@ -1,6 +1,5 @@
 package be.ordina.spring.demo;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.integration.support.MessageBuilder;
@@ -14,9 +13,8 @@ import java.util.Random;
 import static be.ordina.spring.demo.RickAndMortyQuote.I_WANT_MY_SZECHUAN_SAUCE;
 import static be.ordina.spring.demo.RickAndMortyQuote.YOU_ARE_A_WINNER;
 
-@Slf4j
 @Component
-public class MrMeeseekRoutine {
+public class MrMeeseeksRoutine {
 
 	private final OutputChannels outputChannels;
 
@@ -29,7 +27,7 @@ public class MrMeeseekRoutine {
 	private String instanceId;
 
 	@Autowired
-	public MrMeeseekRoutine(InputChannels inputChannels, OutputChannels outputChannels) {
+	public MrMeeseeksRoutine(InputChannels inputChannels, OutputChannels outputChannels) {
 		this.outputChannels = outputChannels;
 
 		GREETINGS.add(RickAndMortyQuote.IM_MR_MEESEEKS_LOOK_AT_ME);

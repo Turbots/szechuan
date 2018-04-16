@@ -8,6 +8,8 @@ applications:
   path: target/morty-0.0.1-SNAPSHOT.jar
   buildpack: https://github.com/cloudfoundry/java-buildpack
   timeout: 120
+  env:
+    JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 9.0.4_+ } }'
   routes:
     - route: rnm-morty.cfapps.io
   services:

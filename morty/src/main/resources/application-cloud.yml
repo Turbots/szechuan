@@ -1,0 +1,23 @@
+server:
+  http2:
+    enabled: true
+spring:
+  rabbitmq:
+    host: ${cloudamqp.credentials.http_api_uri:localhost}
+  cloud:
+    stream:
+      default-binder: rabbit
+      rabbit:
+        bindings:
+          meeseeks:
+            consumer:
+              ttl: 5000
+          mcdonalds:
+            consumer:
+              ttl: 5000
+          rick:
+            consumer:
+              ttl: 5000
+          microverse:
+            consumer:
+              ttl: 5000
