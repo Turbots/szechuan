@@ -139,7 +139,7 @@ public class MeeseeksBoxApplication implements WebMvcConfigurer {
 			log.info("Checking whether Mr Meeseeks can be scaled...");
 
 			this.outputChannels.microverse().send(MessageBuilder
-				.withPayload(new GlipGlop(RickAndMortyQuote.MR_MEESEEKS_SPAWN, "3"))
+				.withPayload(new GlipGlop(RickAndMortyQuote.MR_MEESEEKS_SPAWN, "0"))
 				.build());
 
 			this.cloudFoundryOperations.applications()
