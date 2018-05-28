@@ -2,10 +2,6 @@ package be.ordina.spring.demo.meeseeksbox;
 
 import be.ordina.spring.demo.GlipGlop;
 import be.ordina.spring.demo.RickAndMortyQuote;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.extern.slf4j.Slf4j;
 import org.cloudfoundry.client.CloudFoundryClient;
 import org.cloudfoundry.doppler.DopplerClient;
 import org.cloudfoundry.operations.CloudFoundryOperations;
@@ -21,6 +17,8 @@ import org.cloudfoundry.reactor.doppler.ReactorDopplerClient;
 import org.cloudfoundry.reactor.tokenprovider.PasswordGrantTokenProvider;
 import org.cloudfoundry.reactor.uaa.ReactorUaaClient;
 import org.cloudfoundry.uaa.UaaClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -37,11 +35,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
 @EnableBinding(OutputChannels.class)
-public class MeeseeksBoxApplication extends WebMvcConfigurerAdapter {
+public class MeeseeksBoxApplication implements WebMvcConfigurer {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MeeseeksBoxApplication.class, args);
@@ -120,17 +118,21 @@ public class MeeseeksBoxApplication extends WebMvcConfigurerAdapter {
 		}
 	}
 
-	@Slf4j
 	@RestController
 	@Profile("cloud")
 	@RequestMapping("/")
-	@AllArgsConstructor
 	static class MeeseeksBoxController {
 
 		private static final String MR_MEESEEKS_APP_NAME = "meeseeks";
+		private static final Logger log = LoggerFactory.getLogger(MeeseeksBoxController.class);
 
 		private final CloudFoundryOperations cloudFoundryOperations;
 		private final OutputChannels outputChannels;
+
+		MeeseeksBoxController(CloudFoundryOperations cloudFoundryOperations, OutputChannels outputChannels) {
+			this.cloudFoundryOperations = cloudFoundryOperations;
+			this.outputChannels = outputChannels;
+		}
 
 		@PostMapping
 		public void spawnMrMeeseeks() {
@@ -179,8 +181,6 @@ public class MeeseeksBoxApplication extends WebMvcConfigurerAdapter {
 		}
 	}
 
-	@Getter
-	@Setter
 	@ConfigurationProperties(prefix = "cloudfoundry.client")
 	static class CloudFoundryClientConfigProperties {
 
@@ -199,5 +199,69 @@ public class MeeseeksBoxApplication extends WebMvcConfigurerAdapter {
 		private String targetOrg;
 
 		private String targetSpace;
+
+		public String getApiHost() {
+			return apiHost;
+		}
+
+		public void setApiHost(String apiHost) {
+			this.apiHost = apiHost;
+		}
+
+		public String getClientId() {
+			return clientId;
+		}
+
+		public void setClientId(String clientId) {
+			this.clientId = clientId;
+		}
+
+		public String getClientSecret() {
+			return clientSecret;
+		}
+
+		public void setClientSecret(String clientSecret) {
+			this.clientSecret = clientSecret;
+		}
+
+		public String getUsername() {
+			return username;
+		}
+
+		public void setUsername(String username) {
+			this.username = username;
+		}
+
+		public String getPassword() {
+			return password;
+		}
+
+		public void setPassword(String password) {
+			this.password = password;
+		}
+
+		public boolean isSkipSslValidation() {
+			return skipSslValidation;
+		}
+
+		public void setSkipSslValidation(boolean skipSslValidation) {
+			this.skipSslValidation = skipSslValidation;
+		}
+
+		public String getTargetOrg() {
+			return targetOrg;
+		}
+
+		public void setTargetOrg(String targetOrg) {
+			this.targetOrg = targetOrg;
+		}
+
+		public String getTargetSpace() {
+			return targetSpace;
+		}
+
+		public void setTargetSpace(String targetSpace) {
+			this.targetSpace = targetSpace;
+		}
 	}
 }

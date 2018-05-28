@@ -1,6 +1,5 @@
 package be.ordina.spring.demo;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.messaging.Message;
@@ -15,7 +14,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Slf4j
 @RestController
 @RequestMapping("/events")
 public class EventController {
@@ -45,14 +43,12 @@ public class EventController {
 	class GlipGlopHandler implements MessageHandler {
 
 		@Override public void handleMessage(Message<?> m) throws MessagingException {
-			GlipGlop glipGlop = (GlipGlop) m.getPayload();
 			emitters.forEach(emitter -> {
 				try {
-					emitter.send(glipGlop);
+					emitter.send(m.getPayload());
 				} catch (IOException e) {
 					emitter.complete();
 					emitters.remove(emitter);
-					log.error("IOException when trying to send event");
 				}
 			});
 		}

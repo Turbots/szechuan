@@ -1,11 +1,9 @@
 package be.ordina.spring.demo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.Getter;
 
 import static be.ordina.spring.demo.RickAndMortyCharacter.*;
 
-@Getter
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum RickAndMortyQuote {
 
@@ -43,5 +41,13 @@ public enum RickAndMortyQuote {
 
 	public String getMessage() {
 		return this.name();
+	}
+
+	public RickAndMortyCharacter getAuthor() {
+		return author;
+	}
+
+	public String getText() {
+		return text;
 	}
 }
