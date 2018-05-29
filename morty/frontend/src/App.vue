@@ -8,6 +8,7 @@
     <audio ref="imMrMeeseeks2" src="sounds/mr-meeseeks-2.mp3"></audio>
     <audio ref="imMrMeeseeks3" src="sounds/mr-meeseeks-3.wav"></audio>
     <audio ref="justWannaDie" src="sounds/just-wanna-die.mp3"></audio>
+    <audio ref="justWannaDie2" src="sounds/just-wanna-die-2.mp3"></audio>
     <audio ref="wubbaLubbaDubDub" src="sounds/wubba-lubba-dub-dub.wav"></audio>
     <div class="columns">
       <div class="column">
@@ -171,7 +172,13 @@
             })
           }
           if (data.quote === 'NOW_I_LL_NEVER_DIE') {
-            this.$refs.justWannaDie.play()
+            let number = Math.floor((Math.random() * 100) + 1)
+            if (number % 2 === 0) {
+              this.$refs.justWannaDie.play()
+            }
+            else {
+              this.$refs.justWannaDie2.play()
+            }
             this.addMessage(this.meeseeks, {
               time: time,
               instance: data.instanceIndex,
@@ -216,11 +223,12 @@
           }
         }, false)
       },
-      addMessage (array, message) {
+      addMessage (array, messageContainer) {
         if (array.length >= 8) {
           array.shift()
         }
-        array.push(message)
+        messageContainer.message = messageContainer.message.replace(/_/g, ' ')
+        array.push(messageContainer)
       },
       startSearching () {
         this.$refs.szechuanSauce.play()
