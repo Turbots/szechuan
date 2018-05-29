@@ -9,6 +9,7 @@
     <audio ref="imMrMeeseeks3" src="sounds/mr-meeseeks-3.wav"></audio>
     <audio ref="justWannaDie" src="sounds/just-wanna-die.mp3"></audio>
     <audio ref="justWannaDie2" src="sounds/just-wanna-die-2.mp3"></audio>
+    <audio ref="existenceIsPain" src="sounds/existence-is-pain.mp3"></audio>
     <audio ref="wubbaLubbaDubDub" src="sounds/wubba-lubba-dub-dub.wav"></audio>
     <div class="columns">
       <div class="column">
@@ -155,6 +156,13 @@
               message: data.quote
             })
           }
+          if (data.quote === 'OOOH_YEAH_CAN_DO') {
+            this.addMessage(this.meeseeks, {
+              time: time,
+              instance: data.instanceIndex,
+              message: data.quote
+            })
+          }
           if (data.quote === 'HEY_THERE_IM_MR_MEESEEKS') {
             this.$refs.imMrMeeseeks2.play()
             this.addMessage(this.meeseeks, {
@@ -171,12 +179,19 @@
               message: data.quote
             })
           }
+          if (data.quote === 'EXISTENCE_IS_PAIN') {
+            this.$refs.existenceIsPain.play()
+            this.addMessage(this.meeseeks, {
+              time: time,
+              instance: data.instanceIndex,
+              message: data.quote
+            })
+          }
           if (data.quote === 'NOW_I_LL_NEVER_DIE') {
             let number = Math.floor((Math.random() * 100) + 1)
             if (number % 2 === 0) {
               this.$refs.justWannaDie.play()
-            }
-            else {
+            } else {
               this.$refs.justWannaDie2.play()
             }
             this.addMessage(this.meeseeks, {
