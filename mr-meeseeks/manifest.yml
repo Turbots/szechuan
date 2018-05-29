@@ -7,6 +7,7 @@ applications:
 - name: meeseeks
   path: target/mr-meeseeks-0.0.1-SNAPSHOT.jar
   buildpack: https://github.com/cloudfoundry/java-buildpack
+  health-check-type: process
   timeout: 120
   services:
     - bunny

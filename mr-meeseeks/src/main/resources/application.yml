@@ -1,8 +1,5 @@
 server:
   port: ${PORT:8081}
-management:
-  security:
-    enabled: false
 eureka:
   instance:
     hostname: ${vcap.application.uris[0]:localhost}
@@ -22,3 +19,8 @@ spring:
       bindings:
         meeseeks:
           group: szechuan-finder
+logging:
+  level:
+    root: INFO
+    org.springframework.messaging: DEBUG
+    org.springframework.amqp: DEBUG

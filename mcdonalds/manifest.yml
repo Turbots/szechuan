@@ -8,6 +8,7 @@ applications:
   path: target/mcdonalds-0.0.1-SNAPSHOT.jar
   buildpack: https://github.com/cloudfoundry/java-buildpack
   timeout: 120
+  health-check-type: process
   routes:
     - route: rnm-mcdonalds.cfapps.io
   services:

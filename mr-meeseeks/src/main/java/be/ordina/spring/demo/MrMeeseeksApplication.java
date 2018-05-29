@@ -7,7 +7,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @EnableScheduling
 @SpringBootApplication
-@EnableBinding({ InputChannels.class, OutputChannels.class })
+@EnableBinding(MeeseeksChannels.class)
 public class MrMeeseeksApplication {
 
 	public static void main(String[] args) {

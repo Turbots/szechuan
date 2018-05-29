@@ -12,6 +12,8 @@ spring:
 ---
 spring:
   profiles: dev
-spring:
   resources:
     static-locations: classpath:/META-INF/resources, classpath:/resources, classpath:/static, classpath:/public, file:morty/frontend/dist
+server:
+  tomcat:
+    max-threads: 20

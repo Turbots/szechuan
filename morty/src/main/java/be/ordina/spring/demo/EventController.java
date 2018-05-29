@@ -1,10 +1,7 @@
 package be.ordina.spring.demo;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.http.MediaType;
-import org.springframework.messaging.Message;
-import org.springframework.messaging.MessageHandler;
-import org.springframework.messaging.MessagingException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,15 +17,6 @@ public class EventController {
 
 	private final List<SseEmitter> emitters = new ArrayList<>();
 
-	@Autowired
-	public EventController(InputChannels inputChannels) {
-		GlipGlopHandler glipGlopHandler = new GlipGlopHandler();
-		inputChannels.rick().subscribe(glipGlopHandler);
-		inputChannels.meeseeks().subscribe(glipGlopHandler);
-		inputChannels.mcdonalds().subscribe(glipGlopHandler);
-		inputChannels.microverse().subscribe(glipGlopHandler);
-	}
-
 	@GetMapping(produces = MediaType.TEXT_EVENT_STREAM_VALUE)
 	public SseEmitter events() {
 		SseEmitter emitter = new SseEmitter();
@@ -40,17 +28,35 @@ public class EventController {
 		return emitter;
 	}
 
-	class GlipGlopHandler implements MessageHandler {
+	@StreamListener("rick")
+	public void handleRick(GlipGlop glipGlop) {
+		handleGlipGlop(glipGlop);
+	}
 
-		@Override public void handleMessage(Message<?> m) throws MessagingException {
-			emitters.forEach(emitter -> {
-				try {
-					emitter.send(m.getPayload());
-				} catch (IOException e) {
-					emitter.complete();
-					emitters.remove(emitter);
-				}
-			});
-		}
+	@StreamListener("meeseeks")
+	public void handleMeeseeks(GlipGlop glipGlop) {
+		handleGlipGlop(glipGlop);
+	}
+
+	@StreamListener("mcdonalds")
+	public void handleMcdonalds(GlipGlop glipGlop) {
+		handleGlipGlop(glipGlop);
+	}
+
+	@StreamListener("microverse")
+	public void handleMicroverse(GlipGlop glipGlop) {
+		handleGlipGlop(glipGlop);
+	}
+
+	private void handleGlipGlop(GlipGlop glipGlop) {
+		System.out.println(emitters.size());
+		emitters.parallelStream().forEach(emitter -> {
+			try {
+				emitter.send(glipGlop);
+			} catch (IOException e) {
+				emitter.complete();
+				emitters.remove(emitter);
+			}
+		});
 	}
 }

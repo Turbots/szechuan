@@ -1,9 +1,0 @@
-{
-  "properties": [
-    {
-      "name": "mcdonalds.order.chance",
-      "type": "java.lang.String",
-      "description": "The chance that the Szechuan dipping sauce is won."
-    }
-  ]
-}

@@ -5,5 +5,5 @@ public enum RickAndMortyCharacter {
 	RICK,
 	MORTY,
 	MR_MEESEEKS,
-	MCDONALDS;
+	MCDONALDS
 }

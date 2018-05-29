@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 
 @SpringBootApplication
-@EnableBinding({ InputChannels.class, OutputChannels.class })
+@EnableBinding(RickChannels.class)
 public class RickApplication {
 
 	public static void main(String[] args) {
