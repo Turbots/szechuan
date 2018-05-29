@@ -66,7 +66,8 @@
         <div class="box notification is-success">
           <article style="padding: 1em;">
             <p class="title">Rick</p>
-            <p class="subtitle"><i>Rick Sanchez is a genius scientist whose alcoholism and reckless, nihilistic behavior are a source of concern for his daughter's family</i>
+            <p class="subtitle"><i>Rick Sanchez is a genius scientist whose alcoholism and reckless, nihilistic behavior
+              are a source of concern for his daughter's family</i>
             </p>
           </article>
           <figure class="image overlay-container" v-on:click="startSearching">
@@ -81,7 +82,8 @@
         <div class="box notification is-warning">
           <article style="padding: 1em;">
             <p class="title">Meeseeks</p>
-            <p class="subtitle"><i>Meeseeks are creatures created to serve a singular purpose for which they will go to any length to fulfill. After they serve their purpose, they expire and vanish into the air.</i>
+            <p class="subtitle"><i>Meeseeks are creatures created to serve a singular purpose for which they will go to
+              any length to fulfill. After they serve their purpose, they expire and vanish into the air.</i>
             </p>
           </article>
           <figure class="image overlay-container" v-on:click="spawnMeeseeks">
@@ -96,7 +98,8 @@
         <div class="box notification is-danger">
           <article style="padding: 1em;">
             <p class="title">McDonalds</p>
-            <p class="subtitle"><i>Szechuan Chicken McNugget Sauce was a dipping sauce for McDonald's Chicken McNuggets. The sauce was only available in 1998.</i>
+            <p class="subtitle"><i>Szechuan Chicken McNugget Sauce was a dipping sauce for McDonald's Chicken McNuggets.
+              The sauce was only available in 1998.</i>
             </p>
           </article>
           <figure class="image">
@@ -143,39 +146,63 @@
           let time = d.toLocaleTimeString()
           this.nrOfMessages++
 
-          if (data.quote.author === 'MR_MEESEEKS') {
-            if (data.quote.message === 'IM_MR_MEESEEKS_LOOK_AT_ME') {
-              this.$refs.imMrMeeseeks1.play()
-            } else if (data.quote.message === 'HEY_THERE_IM_MR_MEESEEKS') {
-              this.$refs.imMrMeeseeks2.play()
-            } else if (data.quote.message === 'LOOK_AT_ME_IM_MR_MEESEEKS') {
-              this.$refs.imMrMeeseeks3.play()
-            } else if (data.quote.message === 'NOW_I_LL_NEVER_DIE') {
-              this.$refs.justWannaDie.play()
-            } else if (data.quote.message === 'MR_MEESEEKS_SPAWN') {
-              this.$refs.mrMeeseeksSpawn.play()
-            }
+          if (data.quote === 'IM_MR_MEESEEKS_LOOK_AT_ME') {
+            this.$refs.imMrMeeseeks1.play()
             this.addMessage(this.meeseeks, {
               time: time,
               instance: data.instanceIndex,
-              message: data.quote.text
-            })
-            this.nrOfMeeseeks = Math.max.apply(Math, this.meeseeks.map(function (item) {
-              return parseInt(item.instance) + 1
-            }))
-          } else if (data.quote.author === 'RICK') {
-            this.addMessage(this.rick, {
-              time: time,
-              message: data.quote.text
-            })
-          } else if (data.quote.author === 'MCDONALDS') {
-            this.addMessage(this.mcdonalds, {
-              time: time,
-              message: data.quote.text
+              message: data.quote
             })
           }
-
-          if (data.quote.message === 'YOU_ARE_A_WINNER') {
+          if (data.quote === 'HEY_THERE_IM_MR_MEESEEKS') {
+            this.$refs.imMrMeeseeks2.play()
+            this.addMessage(this.meeseeks, {
+              time: time,
+              instance: data.instanceIndex,
+              message: data.quote
+            })
+          }
+          if (data.quote === 'LOOK_AT_ME_IM_MR_MEESEEKS') {
+            this.$refs.imMrMeeseeks3.play()
+            this.addMessage(this.meeseeks, {
+              time: time,
+              instance: data.instanceIndex,
+              message: data.quote
+            })
+          }
+          if (data.quote === 'NOW_I_LL_NEVER_DIE') {
+            this.$refs.justWannaDie.play()
+            this.addMessage(this.meeseeks, {
+              time: time,
+              instance: data.instanceIndex,
+              message: data.quote
+            })
+          }
+          if (data.quote === 'MR_MEESEEKS_SPAWN') {
+            this.$refs.mrMeeseeksSpawn.play()
+            this.addMessage(this.meeseeks, {
+              time: time,
+              instance: data.instanceIndex,
+              message: data.quote
+            })
+          }
+          if (data.quote === 'I_WANT_MY_SZECHUAN_SAUCE' || data.quote === 'WUBBA_LUBBA_DUB_DUB') {
+            this.addMessage(this.rick, {
+              time: time,
+              message: data.quote
+            })
+          }
+          if (data.quote === 'SORRY_NO_LUCK') {
+            this.addMessage(this.mcdonalds, {
+              time: time,
+              message: data.quote
+            })
+          }
+          if (data.quote === 'YOU_ARE_A_WINNER') {
+            this.addMessage(this.mcdonalds, {
+              time: time,
+              message: data.quote
+            })
             this.nrOfSzechuanFound++
             this.$refs.wubbaLubbaDubDub.play()
             this.terminateMeeseeks()
