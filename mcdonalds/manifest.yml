@@ -1,5 +1,5 @@
 ---
-memory: 512MB
+memory: 768MB
 instances: 1
 env:
   SPRING_PROFILES_ACTIVE : cloud
