@@ -49,7 +49,6 @@ public class EventController {
 	}
 
 	private void handleGlipGlop(GlipGlop glipGlop) {
-		System.out.println(emitters.size());
 		emitters.parallelStream().forEach(emitter -> {
 			try {
 				emitter.send(glipGlop);

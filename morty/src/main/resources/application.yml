@@ -9,6 +9,11 @@ spring:
   cloud:
     stream:
       default-binder: rabbit
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
 ---
 spring:
   profiles: dev

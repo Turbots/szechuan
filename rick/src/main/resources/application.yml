@@ -1,8 +1,10 @@
 server:
   port: ${PORT:8080}
 management:
-  security:
-    enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: '*'
 spring:
   rabbitmq:
     host: ${cloudamqp.credentials.http_api_uri:localhost}
